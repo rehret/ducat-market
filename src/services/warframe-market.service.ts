@@ -7,18 +7,40 @@ const baseUrl = Config.get(ConfigKeys.WarframeMarketApiBaseUrl);
 
 export class WarframeMarketService {
 
-    public static async GetPricesForSet(setName: SetNames): Promise<any> {
-        const setResponse = await axios.get<ItemSetResult>(`${baseUrl}/items/${setName}/`);
-        const items = setResponse.data;
+    public static async GetPricesForSet(setName: SetNames): Promise<Item[]> {
+        const items: Item[] = [];
 
-        for (const item of items.payload.item.items_in_set) {
-            if (!item.set_root) {
-                const ordersResponse = await axios.get<OrdersResult>(`${baseUrl}/items/${item.url_name}/orders`);
-                const orders = ordersResponse.data;
-            }
+        const setItems = await WarframeMarketService.GetSetItems(setName);
+        for (const item of setItems) {
+            item.Price = await WarframeMarketService.GetMedianPrice(await WarframeMarketService.GetPricesForItem(item));
+            items.push(item);
         }
 
         return items;
+    }
+
+    private static async GetSetItems(setName: SetNames): Promise<Item[]> {
+        const setResponse = await axios.get<ItemSetResult>(`${baseUrl}/items/${setName}`);
+        const items = setResponse.data;
+
+        return items.payload.item.items_in_set
+            .filter((i) => !i.set_root)
+            .map((i) => new Item(i.en.item_name, i.url_name, i.ducats));
+    }
+
+    private static async GetPricesForItem(item: Item): Promise<number[]> {
+        const ordersResponse = await axios.get<OrdersResult>(`${baseUrl}/items/${item.UrlName}/orders`);
+        const orders = ordersResponse.data;
+        const cutoffDate = new Date();
+        cutoffDate.setMonth(cutoffDate.getMonth() - 1);
+
+        return orders.payload.orders
+            .filter((o) => o.order_type === 'buy' && new Date(o.user.last_seen) >= cutoffDate)
+            .map((o) => o.platinum);
+    }
+
+    private static async GetMedianPrice(prices: number[]): Promise<number> {
+        return prices.sort((a, b) => b - a)[Math.floor(prices.length / 2)];
     }
 
 }
