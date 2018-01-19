@@ -8,8 +8,8 @@ declare type ItemSetResult = {
                 },
                 url_name: string,
                 ducats: number,
-                set_root: boolean,
-            }>,
-        },
+                set_root: boolean
+            }>
+        }
     }
 }

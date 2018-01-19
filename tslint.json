@@ -9,7 +9,8 @@
 		"member-ordering": false,
 		"ordered-imports": false,
 		"quotemark": [true, "single"],
-		"no-unused-expression": false
+        "no-unused-expression": false,
+        "trailing-comma": false
     },
     "rulesDirectory": []
 }
