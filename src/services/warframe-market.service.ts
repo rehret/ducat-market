@@ -12,8 +12,10 @@ export class WarframeMarketService {
         const setItems = await WarframeMarketService.GetSetItems(setName);
         for (const item of setItems) {
             const prices = await WarframeMarketService.GetPricesForItem(item);
-            item.Price = await WarframeMarketService.GetAveragePrice(prices);
-            items.push(item);
+            if (prices.length > 0) {
+                item.Price = await WarframeMarketService.GetAveragePrice(prices);
+                items.push(item);
+            }
         }
 
         return items;
