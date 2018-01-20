@@ -46,7 +46,7 @@ export class WarframeMarketService {
         cutoffDate.setMonth(cutoffDate.getMonth() - 1);
 
         return orders.payload.orders
-            .filter((o) => o.order_type === 'buy' && new Date(o.user.last_seen) >= cutoffDate)
+            .filter((o) => o.order_type === 'sell' && new Date(o.user.last_seen) >= cutoffDate)
             .map((o) => o.platinum);
     }
 
