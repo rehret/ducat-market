@@ -9,6 +9,10 @@ nconf
     .env()
     .file('environmentConfig', path.resolve(__dirname, `${env}.json`))
     .file('defaultConfig', path.resolve(__dirname, 'default.json'))
-    .required([ConfigKeys.WarframeMarketApiBaseUrl]);
+    .file('setNameConfig', path.resolve(__dirname, 'set-names.json'))
+    .required([
+        ConfigKeys.SetNames,
+        ConfigKeys.WarframeMarketApiBaseUrl
+    ]);
 
 export { nconf as Config, ConfigKeys };

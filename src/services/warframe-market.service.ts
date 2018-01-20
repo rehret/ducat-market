@@ -8,6 +8,7 @@ export class WarframeMarketService {
 
     public static async GetSetItems(setName: string): Promise<Item[]> {
         const url = `${baseUrl}/items/${setName}`;
+        console.log(url);
         const setResponse = await axios.get<ItemSetResult>(url);
         if (setResponse.status !== 200) {
             throw new Error(setResponse.statusText);
@@ -21,6 +22,7 @@ export class WarframeMarketService {
 
     public static async GetItemStats(item: Item): Promise<ItemStatistic> {
         const url = `${baseUrl}/items/${item.UrlName}/statistics`;
+        console.log(url);
         const statsResponse = await axios.get<ItemStatisticsResult>(url);
         if (statsResponse.status !== 200) {
             throw new Error(statsResponse.statusText);
