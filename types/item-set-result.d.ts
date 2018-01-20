@@ -4,12 +4,12 @@ declare type ItemSetResult = {
             id: string,
             items_in_set: Array<{
                 en: {
-                    item_name: string,
-                },
-                url_name: string,
-                ducats: number,
-                set_root: boolean
-            }>
-        }
-    }
-}
+                    item_name: string;
+                };
+                url_name: string;
+                ducats: number;
+                set_root: boolean;
+            }>;
+        };
+    };
+};

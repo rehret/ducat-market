@@ -11,9 +11,9 @@ export class WarframeMarketService {
 
         const setItems = await WarframeMarketService.GetSetItems(setName);
         for (const item of setItems) {
-            const prices = await WarframeMarketService.GetPricesForItem(item);
-            if (prices.length > 0) {
-                item.Price = await WarframeMarketService.GetAveragePrice(prices);
+            const itemStats = await WarframeMarketService.GetItemStatistics(item);
+            if (itemStats.volume > 0) {
+                item.Price = itemStats.avg_price;
                 items.push(item);
             }
         }
@@ -34,24 +34,14 @@ export class WarframeMarketService {
             .map((i) => new Item(i.en.item_name, i.url_name, i.ducats));
     }
 
-    private static async GetPricesForItem(item: Item): Promise<number[]> {
-        const url = `${baseUrl}/items/${item.UrlName}/orders`;
-        const ordersResponse = await axios.get<OrdersResult>(url);
-        if (ordersResponse.status !== 200) {
-            throw new Error(ordersResponse.statusText);
-        }
-
-        const orders = ordersResponse.data;
-        const cutoffDate = new Date();
-        cutoffDate.setMonth(cutoffDate.getMonth() - 1);
-
-        return orders.payload.orders
-            .filter((o) => o.order_type === 'sell' && new Date(o.user.last_seen) >= cutoffDate)
-            .map((o) => o.platinum);
-    }
-
-    private static async GetAveragePrice(prices: number[]): Promise<number> {
-        return prices.reduce((sum, val) => sum + val, 0) / prices.length;
+    private static async GetItemStatistics(item: Item): Promise<ItemStatistic> {
+        const response = await axios.get<ItemStatisticsResult>(`${baseUrl}/items/${item.UrlName}/statistics`);
+        const stats = response.data.payload.statistics['90days'];
+        return stats.sort((a, b) => {
+            const aDate = new Date(a.datetime);
+            const bDate = new Date(b.datetime);
+            return bDate.getTime() - aDate.getTime();
+        })[0];
     }
 
 }
