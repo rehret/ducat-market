@@ -11,7 +11,8 @@ export class WarframeMarketService {
 
         const setItems = await WarframeMarketService.GetSetItems(setName);
         for (const item of setItems) {
-            item.Price = await WarframeMarketService.GetMedianPrice(await WarframeMarketService.GetPricesForItem(item));
+            const prices = await WarframeMarketService.GetPricesForItem(item);
+            item.Price = await WarframeMarketService.GetAveragePrice(prices);
             items.push(item);
         }
 
@@ -47,8 +48,8 @@ export class WarframeMarketService {
             .map((o) => o.platinum);
     }
 
-    private static async GetMedianPrice(prices: number[]): Promise<number> {
-        return prices.sort((a, b) => b - a)[Math.floor(prices.length / 2)];
+    private static async GetAveragePrice(prices: number[]): Promise<number> {
+        return prices.reduce((sum, val) => sum + val, 0) / prices.length;
     }
 
 }
