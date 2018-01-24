@@ -1,17 +1,13 @@
+import 'reflect-metadata';
+import { createKoaServer } from 'routing-controllers';
 import { DucatMarketService } from './services/ducat-market.service';
 
-function rightPad(str: string, length: number): string {
-    let out = `${str}`;
-    while (out.length !== length) {
-        out += ' ';
-    }
-    return out;
-}
+DucatMarketService.Init();
 
-DucatMarketService.GetTopItems().then((topItems) => {
-    const maxItemNameLength = topItems.reduce((max, item) => item.Name.length > max ? item.Name.length : max, 0);
-    topItems.forEach((item) => {
-        // tslint:disable-next-line:max-line-length
-        console.log(`${rightPad(`${item.Name},`, maxItemNameLength + 1)} Ducats: ${item.Ducats}, Plat: ${item.Price.toFixed(2)}, Ducats/Plat: ${item.DucatPlatRatio.toFixed(2)}`);
-    });
+const app = createKoaServer({
+    controllers: [`${__dirname}/controllers/*.[tj]s`]
+});
+
+app.listen(8000, () => {
+    console.log('Listening on port 8000');
 });
