@@ -4,7 +4,7 @@ import { Log } from '../log';
 import { RequestId } from '../middleware/request-id';
 import { ErrorLogger } from '../middleware/error-logger';
 import { RequestLogger } from '../middleware/request-logger';
-import { DucatMarketController } from '../controllers/ducat-market-controller';
+import { DucatMarketController } from '../controllers/ducat-market.controller';
 
 export const Container = new InversifyContainer();
 
