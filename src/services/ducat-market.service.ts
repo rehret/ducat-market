@@ -1,3 +1,4 @@
+import { Config, ConfigKeys } from '../config/config';
 import { ItemService } from './item.service';
 import { Item } from '../models/item';
 import { Log } from '../log';
@@ -34,7 +35,7 @@ export class DucatMarketService {
                     DucatMarketService.itemPromise = tempPromise;
                     Log.info('Warframe.Market items updated');
                 });
-            }, 1 * 60 * 60 * 1000);
+            }, Config.get(ConfigKeys.CacheTTL));
         }
 
         return DucatMarketService.itemPromise;

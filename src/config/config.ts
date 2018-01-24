@@ -14,6 +14,7 @@ nconf
         ConfigKeys.Port,
         ConfigKeys.SetNames,
         ConfigKeys.WarframeMarketApiBaseUrl,
+        ConfigKeys.CacheTTL,
         ConfigKeys.LogLevel
     ]);
 

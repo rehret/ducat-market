@@ -3,6 +3,7 @@ export enum ConfigKeys {
 
     SetNames = 'set_names',
     WarframeMarketApiBaseUrl = 'warframe_market_api_baseurl',
+    CacheTTL = 'cache_ttl',
 
     AppName = 'app_name',
     LogLevel = 'log_level',
