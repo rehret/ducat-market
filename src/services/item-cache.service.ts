@@ -26,7 +26,9 @@ export class ItemCacheService {
                         reject(err);
                     } else {
                         Log.info('Item cache loaded');
-                        resolve(JSON.parse(fileContents));
+                        resolve(JSON.parse(fileContents).map((jsonItem: Item) => {
+                            return new Item(jsonItem.Name, jsonItem.UrlName, jsonItem.Ducats, jsonItem.Price);
+                        }));
                     }
                 });
             }
