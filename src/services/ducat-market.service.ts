@@ -28,7 +28,7 @@ export class DucatMarketService {
         DucatMarketService.Items;
     }
 
-    public static async GetTopItems(limit: number = 5, printProgress: boolean = true): Promise<Item[]> {
+    public static async GetTopItems(limit: number = 5): Promise<Item[]> {
         return (await DucatMarketService.Items)
             .sort((a, b) => b.DucatPlatRatio - a.DucatPlatRatio)
             .slice(0, limit);
