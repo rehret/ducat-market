@@ -9,6 +9,8 @@ export class ItemCacheService {
         fs.writeFile(ItemCacheService.cacheFileName, JSON.stringify(items), 'utf-8', (err) => {
             if (err) {
                 Log.error(err, 'Failed to write item cache');
+            } else {
+                Log.info('Item cache updated');
             }
         });
     }
@@ -22,9 +24,10 @@ export class ItemCacheService {
                     if (err) {
                         Log.error(err, 'Failed to retreive item cache');
                         reject(err);
+                    } else {
+                        Log.info('Item cache loaded');
+                        resolve(JSON.parse(fileContents));
                     }
-
-                    resolve(JSON.parse(fileContents));
                 });
             }
         });

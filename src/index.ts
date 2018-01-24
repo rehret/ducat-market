@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import { createKoaServer, useContainer } from 'routing-controllers';
 import { Container } from './config/inversify-config';
 import { Config, ConfigKeys } from './config/config';
-import { DucatMarketService } from './services/ducat-market.service';
 import { Log } from './log';
+import { ItemProvider } from './services/item.provider';
 
-DucatMarketService.Init();
+ItemProvider.GetItems();
 
 useContainer(Container);
 
