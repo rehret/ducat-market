@@ -1,3 +1,12 @@
 {
-    "warframe_market_api_baseurl": "https://api.warframe.market/v1"
+    "app_name": "DucatMarket",
+    "port": 8000,
+    "warframe_market_api_baseurl": "https://api.warframe.market/v1",
+    "log_level": "debug",
+    "log_to_console": false,
+    "log_to_file": false,
+    "log_linenumbers": false,
+    "log_file_path": "./pips.log",
+    "log_file_rotation": "1d",
+    "log_file_count": 10
 }

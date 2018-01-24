@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "develop": "cross-env NODE_ENV=development ts-node src/index.ts | bunyan"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -27,11 +27,12 @@
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.4",
+    "@types/koa": "^2.0.43",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
-    "@types/koa": "^2.0.43",
     "@types/nconf": "^0.0.36",
     "@types/node": "^9.3.0",
-    "@types/shortid": "^0.0.29"
+    "@types/shortid": "^0.0.29",
+    "cross-env": "^5.1.3"
   }
 }

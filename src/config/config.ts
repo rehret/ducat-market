@@ -11,8 +11,10 @@ nconf
     .file('defaultConfig', path.resolve(__dirname, 'default.json'))
     .file('setNameConfig', path.resolve(__dirname, 'set-names.json'))
     .required([
+        ConfigKeys.Port,
         ConfigKeys.SetNames,
-        ConfigKeys.WarframeMarketApiBaseUrl
+        ConfigKeys.WarframeMarketApiBaseUrl,
+        ConfigKeys.LogLevel
     ]);
 
 export { nconf as Config, ConfigKeys };
