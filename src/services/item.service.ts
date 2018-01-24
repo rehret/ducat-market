@@ -1,16 +1,13 @@
 import { Config, ConfigKeys } from '../config/config';
 import { WarframeMarketService } from '../services/warframe-market.service';
 import { Item } from '../models/item';
+import { Log } from '../log';
 
 export class ItemService {
-    public static async GetItems(progress?: (current: number, total: number) => void): Promise<Item[]> {
+    public static async GetItems(): Promise<Item[]> {
         const warframeMarketService = new WarframeMarketService();
         const items: Item[] = [];
         const setNames = Config.get(ConfigKeys.SetNames) as string[];
-
-        if (typeof progress !== 'function') {
-            progress = () => null;
-        }
 
         let current = 0;
         let total = setNames.length;
@@ -20,7 +17,7 @@ export class ItemService {
         for (const set of setNames) {
             setItems = setItems.concat(await warframeMarketService.GetSetItems(set));
             current++;
-            progress(current, total);
+            Log.debug(`Fetching sets: ${current} / ${total}`);
         }
 
         current = 0;
@@ -34,7 +31,7 @@ export class ItemService {
                 items.push(item);
             }
 
-            progress(current, total);
+            Log.debug(`Fetching items: ${current} / ${total}`);
         }
 
         return items;

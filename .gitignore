@@ -1,2 +1,8 @@
+# node
 node_modules/
+
+# yarn
 yarn-error.log
+
+# item cache
+item-cache.json
