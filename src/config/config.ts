@@ -12,7 +12,6 @@ nconf
     .file('setNameConfig', path.resolve(__dirname, 'set-names.json'))
     .required([
         ConfigKeys.Port,
-        ConfigKeys.SetNames,
         ConfigKeys.WarframeMarketApiBaseUrl,
         ConfigKeys.CacheTTL,
         ConfigKeys.LogLevel

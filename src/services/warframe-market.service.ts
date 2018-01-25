@@ -11,25 +11,34 @@ export class WarframeMarketService {
     constructor(@inject(Axios) axios: AxiosStatic) {
         const baseUrl = Config.get(ConfigKeys.WarframeMarketApiBaseUrl);
         this.http = axios.create({
-            baseURL: `${baseUrl}/items/`
+            baseURL: `${baseUrl}/items`
         });
     }
 
-    public async GetSetItems(setName: string): Promise<Item[]> {
-        return this.http.get<ItemSetResult>(setName).then((setResponse) => {
+    public async GetItemManifest(): Promise<ItemManifest[]> {
+        return this.http.get<ItemManifestResult>('').then((manifestResult) => {
+            if (manifestResult.status !== 200) {
+                throw new Error(manifestResult.statusText);
+            }
+
+            const manifest = manifestResult.data;
+            return manifest.payload.items.en;
+        });
+    }
+
+    public async GetItemsInSet(setName: string): Promise<ItemInSet[]> {
+        return this.http.get<ItemSetResult>(`/${setName}`).then((setResponse) => {
             if (setResponse.status !== 200) {
                 throw new Error(setResponse.statusText);
             }
 
             const items = setResponse.data;
-            return items.payload.item.items_in_set
-                .filter((i) => !i.set_root)
-                .map((i) => new Item(i.en.item_name, i.url_name, i.ducats));
+            return items.payload.item.items_in_set;
         });
     }
 
     public async GetItemStats(item: Item): Promise<ItemStatistic> {
-        return this.http.get<ItemStatisticsResult>(`${item.UrlName}/statistics`).then((statsResponse) => {
+        return this.http.get<ItemStatisticsResult>(`/${item.UrlName}/statistics`).then((statsResponse) => {
             if (statsResponse.status !== 200) {
                 throw new Error(statsResponse.statusText);
             }
