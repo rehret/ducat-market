@@ -1,0 +1,17 @@
+[
+    {
+        "id": "somaprimeset",
+        "item_name": "Soma Prime Set",
+        "url_name": "soma_prime_set"
+    },
+    {
+        "id": "somaprimebarrel",
+        "item_name": "Soma Prime Barrel",
+        "url_name": "soma_prime_barrel"
+    },
+    {
+        "id": "primedcontinuity",
+        "item_name": "Primed Continuity",
+        "url_name": "primed_continuity"
+    }
+]

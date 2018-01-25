@@ -1,0 +1,18 @@
+[
+    {
+        "en": {
+            "item_name": "Soma Prime Barrel"
+        },
+        "ducats": 45,
+        "set_root": false,
+        "url_name": "soma_prime_barrel"
+    },
+    {
+        "en": {
+            "item_name": "Soma Prime Stock"
+        },
+        "ducats": 30,
+        "set_root": false,
+        "url_name": "soma_prime_stock"
+    }
+]

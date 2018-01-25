@@ -1,0 +1,13 @@
+{
+    "avg_price": 1,
+    "closed_price": 4,
+    "datetime": "2018-01-25T19:58:13.205Z",
+    "donch_bot": 1,
+    "donch_top": 5,
+    "id": "asdf",
+    "max_price": 5,
+    "median": 4,
+    "min_price": 1,
+    "open_price": 3,
+    "volume": 5
+}
