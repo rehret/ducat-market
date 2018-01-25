@@ -14,5 +14,13 @@
         "ducats": 30,
         "set_root": false,
         "url_name": "soma_prime_stock"
+    },
+    {
+        "en": {
+            "item_name": "Soma Prime Set"
+        },
+        "ducats": 0,
+        "set_root": true,
+        "url_name": "soma_prime_set"
     }
 ]
