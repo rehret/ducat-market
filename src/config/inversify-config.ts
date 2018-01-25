@@ -31,6 +31,13 @@ Container.bind<DucatMarketController>(DucatMarketController).toSelf();
 // Services
 Container.bind<DucatMarketService>(DucatMarketService).toSelf();
 Container.bind<ItemCacheService>(ItemCacheService).toSelf();
-Container.bind<ItemProvider>(ItemProvider).toSelf().inSingletonScope();
 Container.bind<ItemService>(ItemService).toSelf();
 Container.bind<WarframeMarketService>(WarframeMarketService).toSelf();
+
+// Instantiate ItemProvider at config-time to begin prefetching items
+Container.bind<ItemProvider>(ItemProvider).toConstantValue(
+    new ItemProvider(
+        Container.resolve<ItemCacheService>(ItemCacheService),
+        Container.resolve<ItemService>(ItemService)
+    )
+);

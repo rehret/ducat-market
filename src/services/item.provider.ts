@@ -9,6 +9,7 @@ import { injectable, inject } from 'inversify';
 export class ItemProvider {
     private itemCacheService: ItemCacheService;
     private itemService: ItemService;
+    private itemPromise: Promise<Item[]>;
 
     constructor(
         @inject(ItemCacheService) itemCacheService: ItemCacheService,
@@ -16,11 +17,17 @@ export class ItemProvider {
     ) {
         this.itemCacheService = itemCacheService;
         this.itemService = itemService;
+
+        // begin prefetching items instead of waiting for the first request
+        this.GetItems();
     }
 
-    private itemPromise: Promise<Item[]>;
+    public get Items(): Promise<Item[]> {
+        return this.itemPromise;
+    }
 
-    public async GetItems(): Promise<Item[]> {
+    private async GetItems(): Promise<void> {
+        // only run once (itemPromise is undefined at instantiation)
         if (this.itemPromise === undefined) {
             if (this.itemCacheService.HasCache()) {
                 this.itemPromise = this.itemCacheService.GetItemsCache();
@@ -42,6 +49,6 @@ export class ItemProvider {
             }, Config.get(ConfigKeys.CacheTTL));
         }
 
-        return this.itemPromise;
+        return;
     }
 }

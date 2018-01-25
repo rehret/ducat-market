@@ -3,10 +3,6 @@ import { createKoaServer, useContainer } from 'routing-controllers';
 import { Container } from './config/inversify-config';
 import { Config, ConfigKeys } from './config/config';
 import { Log } from './log';
-import { ItemProvider } from './services/item.provider';
-
-// Begin fetching items rather than waiting for first request
-Container.resolve<ItemProvider>(ItemProvider).GetItems();
 
 useContainer(Container);
 
