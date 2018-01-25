@@ -38,6 +38,7 @@ Container.bind<WarframeMarketService>(WarframeMarketService).toSelf();
 Container.bind<ItemProvider>(ItemProvider).toConstantValue(
     new ItemProvider(
         Container.resolve<ItemCacheService>(ItemCacheService),
-        Container.resolve<ItemService>(ItemService)
+        Container.resolve<ItemService>(ItemService),
+        Container.resolve<Bunyan>(Bunyan)
     )
 );

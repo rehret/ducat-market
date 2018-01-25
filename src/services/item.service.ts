@@ -1,20 +1,25 @@
+import * as Bunyan from 'bunyan';
 import { WarframeMarketService } from '../services/warframe-market.service';
 import { Item } from '../models/item';
-import { Log } from '../log';
 import { injectable, inject } from 'inversify';
 
 @injectable()
 export class ItemService {
     private warframeMarketService: WarframeMarketService;
+    private log: Bunyan;
 
-    constructor(@inject(WarframeMarketService) warframeMarketService: WarframeMarketService) {
+    constructor(
+        @inject(WarframeMarketService) warframeMarketService: WarframeMarketService,
+        @inject(Bunyan) log: Bunyan
+    ) {
         this.warframeMarketService = warframeMarketService;
+        this.log = log;
     }
 
     public async GetItems(): Promise<Item[]> {
         const items: Item[] = [];
 
-        Log.debug('Fetching item manifest');
+        this.log.debug('Fetching item manifest');
         const itemSetManifest = await this.warframeMarketService.GetItemManifest();
 
         const setNames = itemSetManifest
@@ -31,7 +36,7 @@ export class ItemService {
 
         for (const set of setNames) {
             current++;
-            Log.debug(`Fetching sets: ${current} / ${total}`);
+            this.log.debug(`Fetching sets: ${current} / ${total}`);
 
             const itemsInSet = (await this.warframeMarketService.GetItemsInSet(set))
                 .filter((i) => !i.set_root)
@@ -45,7 +50,7 @@ export class ItemService {
 
         for (const item of setItems) {
             current++;
-            Log.debug(`Fetching items: ${current} / ${total}`);
+            this.log.debug(`Fetching items: ${current} / ${total}`);
 
             const stats = await this.warframeMarketService.GetItemStats(item);
 

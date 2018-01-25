@@ -1,18 +1,23 @@
 import * as fs from 'fs';
+import * as Bunyan from 'bunyan';
 import { Item } from '../models/item';
-import { Log } from '../log';
-import { injectable } from 'inversify';
+import { injectable, inject } from 'inversify';
 
 @injectable()
 export class ItemCacheService {
     private static cacheFileName = './item-cache.json';
+    private log: Bunyan;
+
+    constructor(@inject(Bunyan) log: Bunyan) {
+        this.log = log;
+    }
 
     public async CacheItems(items: Item[]): Promise<void> {
         fs.writeFile(ItemCacheService.cacheFileName, JSON.stringify(items), 'utf-8', (err) => {
             if (err) {
-                Log.error(err, 'Failed to write item cache');
+                this.log.error(err, 'Failed to write item cache');
             } else {
-                Log.info('Item cache updated');
+                this.log.info('Item cache updated');
             }
         });
     }
@@ -24,10 +29,10 @@ export class ItemCacheService {
             } else {
                 fs.readFile(ItemCacheService.cacheFileName, 'utf-8', (err, fileContents) => {
                     if (err) {
-                        Log.error(err, 'Failed to retreive item cache');
+                        this.log.error(err, 'Failed to retreive item cache');
                         reject(err);
                     } else {
-                        Log.info('Item cache loaded');
+                        this.log.info('Item cache loaded');
                         resolve(JSON.parse(fileContents).map((jsonItem: Item) => {
                             return new Item(jsonItem.Name, jsonItem.UrlName, jsonItem.Ducats, jsonItem.Price);
                         }));

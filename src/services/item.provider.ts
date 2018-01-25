@@ -1,22 +1,25 @@
+import * as Bunyan from 'bunyan';
 import { Config, ConfigKeys } from '../config/config';
 import { Item } from '../models/item';
 import { ItemService } from './item.service';
 import { ItemCacheService } from './item-cache.service';
-import { Log } from '../log';
 import { injectable, inject } from 'inversify';
 
 @injectable()
 export class ItemProvider {
     private itemCacheService: ItemCacheService;
     private itemService: ItemService;
+    private log: Bunyan;
     private itemPromise: Promise<Item[]>;
 
     constructor(
         @inject(ItemCacheService) itemCacheService: ItemCacheService,
-        @inject(ItemService) itemService: ItemService
+        @inject(ItemService) itemService: ItemService,
+        @inject(Bunyan) log: Bunyan
     ) {
         this.itemCacheService = itemCacheService;
         this.itemService = itemService;
+        this.log = log;
 
         // begin prefetching items instead of waiting for the first request
         this.GetItems();
@@ -34,7 +37,7 @@ export class ItemProvider {
             } else {
                 this.itemPromise = this.itemService.GetItems();
                 this.itemPromise.then((items) => {
-                    Log.info('Items fetched from Warframe.Market');
+                    this.log.info('Items fetched from Warframe.Market');
                     this.itemCacheService.CacheItems(items);
                 });
             }
@@ -43,7 +46,7 @@ export class ItemProvider {
                 const tempPromise = this.itemService.GetItems();
                 tempPromise.then((items) => {
                     this.itemPromise = tempPromise;
-                    Log.info('Items updated from Warframe.Market');
+                    this.log.info('Items updated from Warframe.Market');
                     this.itemCacheService.CacheItems(items);
                 });
             }, Config.get(ConfigKeys.CacheTTL));
