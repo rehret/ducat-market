@@ -8,12 +8,10 @@ describe('ItemService', () => {
     describe('GetItems()', () => {
         let warframeMock: IMock<WarframeMarketService>;
         let logMock: IMock<Bunyan>;
-        let itemService: ItemService;
 
         beforeEach(() => {
             warframeMock = Mock.ofType<WarframeMarketService>();
             logMock = Mock.ofType<Bunyan>();
-            itemService = new ItemService(warframeMock.object, logMock.object);
 
             warframeMock.setup((x) => x.GetItemManifest())
                 .returns(() => require('../mock-data/item-manifest.json'));
@@ -29,6 +27,8 @@ describe('ItemService', () => {
 
         it('should return an array of type Item', async () => {
             // Arrange
+            const itemService = new ItemService(warframeMock.object, logMock.object);
+
             // Act
             const val = await itemService.GetItems();
 
@@ -40,6 +40,8 @@ describe('ItemService', () => {
 
         it('should call GetItemManifest once', async () => {
             // Arrange
+            const itemService = new ItemService(warframeMock.object, logMock.object);
+
             // Act
             await itemService.GetItems();
 
@@ -49,6 +51,8 @@ describe('ItemService', () => {
 
         it('should call GetItemsInSet once', async () => {
             // Arrange
+            const itemService = new ItemService(warframeMock.object, logMock.object);
+
             // Act
             await itemService.GetItems();
 
@@ -58,6 +62,8 @@ describe('ItemService', () => {
 
         it('should call GetItemStats twice', async () => {
             // Arrange
+            const itemService = new ItemService(warframeMock.object, logMock.object);
+
             // Act
             await itemService.GetItems();
 
