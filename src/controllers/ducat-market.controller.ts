@@ -21,7 +21,7 @@ export class DucatMarketController {
 
     @Get('/items')
     public async GetItems(): Promise<Item[]> {
-        return this.itemProvider.GetItems();
+        return this.itemProvider.Items;
     }
 
     @Get('/items/top')
