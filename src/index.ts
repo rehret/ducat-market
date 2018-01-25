@@ -5,7 +5,8 @@ import { Config, ConfigKeys } from './config/config';
 import { Log } from './log';
 import { ItemProvider } from './services/item.provider';
 
-ItemProvider.GetItems();
+// Begin fetching items rather than waiting for first request
+Container.resolve<ItemProvider>(ItemProvider).GetItems();
 
 useContainer(Container);
 

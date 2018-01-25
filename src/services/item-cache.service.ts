@@ -1,11 +1,13 @@
 import * as fs from 'fs';
 import { Item } from '../models/item';
 import { Log } from '../log';
+import { injectable } from 'inversify';
 
+@injectable()
 export class ItemCacheService {
     private static cacheFileName = './item-cache.json';
 
-    public static async CacheItems(items: Item[]): Promise<void> {
+    public async CacheItems(items: Item[]): Promise<void> {
         fs.writeFile(ItemCacheService.cacheFileName, JSON.stringify(items), 'utf-8', (err) => {
             if (err) {
                 Log.error(err, 'Failed to write item cache');
@@ -15,10 +17,10 @@ export class ItemCacheService {
         });
     }
 
-    public static async GetItemsCache(): Promise<Item[] | undefined> {
-        return new Promise<Item[] | undefined>((resolve, reject) => {
-            if (!ItemCacheService.HasCache()) {
-                resolve();
+    public async GetItemsCache(): Promise<Item[]> {
+        return new Promise<Item[]>((resolve, reject) => {
+            if (!this.HasCache()) {
+                resolve([]);
             } else {
                 fs.readFile(ItemCacheService.cacheFileName, 'utf-8', (err, fileContents) => {
                     if (err) {
@@ -35,7 +37,7 @@ export class ItemCacheService {
         });
     }
 
-    public static HasCache(): boolean {
+    public HasCache(): boolean {
         return fs.existsSync(ItemCacheService.cacheFileName);
     }
 }

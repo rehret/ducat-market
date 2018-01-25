@@ -1,12 +1,14 @@
-import axios, { AxiosInstance } from 'axios';
+import Axios, { AxiosInstance, AxiosStatic } from 'axios';
 import { Config, ConfigKeys } from '../config/config';
 import { Item } from '../models/item';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export class WarframeMarketService {
 
     private readonly http: AxiosInstance;
 
-    constructor() {
+    constructor(@inject(Axios) axios: AxiosStatic) {
         const baseUrl = Config.get(ConfigKeys.WarframeMarketApiBaseUrl);
         this.http = axios.create({
             baseURL: `${baseUrl}/items/`

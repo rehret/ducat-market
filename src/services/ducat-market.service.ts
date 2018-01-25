@@ -1,9 +1,17 @@
 import { Item } from '../models/item';
 import { ItemProvider } from './item.provider';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export class DucatMarketService {
-    public static async GetTopItems(limit: number = 5): Promise<Item[]> {
-        return (await ItemProvider.GetItems())
+    private itemProvider: ItemProvider;
+
+    constructor(@inject(ItemProvider) itemProvider: ItemProvider) {
+        this.itemProvider = itemProvider;
+    }
+
+    public async GetTopItems(limit: number = 5): Promise<Item[]> {
+        return (await this.itemProvider.GetItems())
             .sort((a, b) => b.DucatPlatRatio - a.DucatPlatRatio)
             .slice(0, limit);
     }

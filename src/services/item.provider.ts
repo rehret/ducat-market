@@ -3,38 +3,45 @@ import { Item } from '../models/item';
 import { ItemService } from './item.service';
 import { ItemCacheService } from './item-cache.service';
 import { Log } from '../log';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export class ItemProvider {
-    private static itemPromise: Promise<Item[]>;
+    private itemCacheService: ItemCacheService;
+    private itemService: ItemService;
 
-    public static async GetItems(): Promise<Item[]> {
-        if (ItemProvider.itemPromise === undefined) {
-            if (ItemCacheService.HasCache()) {
-                ItemProvider.itemPromise = ItemCacheService.GetItemsCache().then((cache) => {
-                    if (!cache) {
-                        return [];
-                    } else {
-                        return cache;
-                    }
-                });
+    constructor(
+        @inject(ItemCacheService) itemCacheService: ItemCacheService,
+        @inject(ItemService) itemService: ItemService
+    ) {
+        this.itemCacheService = itemCacheService;
+        this.itemService = itemService;
+    }
+
+    private itemPromise: Promise<Item[]>;
+
+    public async GetItems(): Promise<Item[]> {
+        if (this.itemPromise === undefined) {
+            if (this.itemCacheService.HasCache()) {
+                this.itemPromise = this.itemCacheService.GetItemsCache();
             } else {
-                ItemProvider.itemPromise = ItemService.GetItems();
-                ItemProvider.itemPromise.then((items) => {
+                this.itemPromise = this.itemService.GetItems();
+                this.itemPromise.then((items) => {
                     Log.info('Items fetched from Warframe.Market');
-                    ItemCacheService.CacheItems(items);
+                    this.itemCacheService.CacheItems(items);
                 });
             }
 
             setInterval(async () => {
-                const tempPromise = ItemService.GetItems();
+                const tempPromise = this.itemService.GetItems();
                 tempPromise.then((items) => {
-                    ItemProvider.itemPromise = tempPromise;
+                    this.itemPromise = tempPromise;
                     Log.info('Items updated from Warframe.Market');
-                    ItemCacheService.CacheItems(items);
+                    this.itemCacheService.CacheItems(items);
                 });
             }, Config.get(ConfigKeys.CacheTTL));
         }
 
-        return ItemProvider.itemPromise;
+        return this.itemPromise;
     }
 }
