@@ -8,9 +8,10 @@ COPY yarn.lock ./
 RUN yarn install
 
 # Copy application source
-COPY ./src/ ./src/
-COPY ./types/ ./types/
-COPY *.json ./
+COPY . .
+
+# Test application
+RUN yarn test
 
 # Build application
 ENV NODE_ENV=production
