@@ -34,7 +34,7 @@ describe('DucatMarketService', () => {
 
             // Assert
             expect(Array.isArray(val));
-            expect(val.length > 0);
+            expect(val.length).toBeGreaterThan(0);
             val.forEach((item) => expect(item instanceof Item));
         });
 
@@ -47,7 +47,7 @@ describe('DucatMarketService', () => {
             const val = await ducatMarketService.GetTopItems(limit);
 
             // Assert
-            expect(val.length === limit);
+            expect(val.length).toBe(limit);
         });
 
         it('should return five items if the "limit" parameter is not provided', async () => {
@@ -58,7 +58,7 @@ describe('DucatMarketService', () => {
             const val = await ducatMarketService.GetTopItems();
 
             // Assert
-            expect(val.length === 5);
+            expect(val.length).toBe(5);
         });
 
         it('should sort the returned array of Items from greatest to least by DucatsToPlatRatio', async () => {
@@ -75,7 +75,7 @@ describe('DucatMarketService', () => {
             }
 
             // Assert
-            expect(sorted);
+            expect(sorted).toBeTruthy();
         });
     });
 });

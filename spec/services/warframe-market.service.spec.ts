@@ -69,7 +69,7 @@ describe('WarframeMarketService', () => {
 
             // Assert
             expect(Array.isArray(val));
-            expect(val.length > 0);
+            expect(val.length).toBeGreaterThan(0);
             val.forEach((itemManifest) => {
                 const itemManifestProperties = Object.getOwnPropertyNames(itemManifest);
                 expect(itemManifestProperties.includes('id'));
@@ -124,7 +124,7 @@ describe('WarframeMarketService', () => {
 
             // Assert
             expect(Array.isArray(val));
-            expect(val.length > 0);
+            expect(val.length).toBeGreaterThan(0);
             val.forEach((itemInSet) => {
                 const itemInSetProperties = Object.getOwnPropertyNames(itemInSet);
                 expect(itemInSetProperties.includes('en'));

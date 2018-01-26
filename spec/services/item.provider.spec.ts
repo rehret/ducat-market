@@ -168,7 +168,7 @@ describe('ItemProvider', () => {
 
             // Assert
             expect(Array.isArray(val));
-            expect(val.length > 0);
+            expect(val.length).toBeGreaterThan(0);
             val.forEach((item) => expect(item instanceof Item));
         });
     });

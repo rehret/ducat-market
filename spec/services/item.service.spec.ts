@@ -34,7 +34,7 @@ describe('ItemService', () => {
 
             // Assert
             expect(Array.isArray(val));
-            expect(val.length > 0);
+            expect(val.length).toBeGreaterThan(0);
             expect(val[0] instanceof Item);
         });
 
