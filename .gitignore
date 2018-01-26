@@ -6,3 +6,6 @@ yarn-error.log
 
 # item cache
 item-cache.json
+
+# build
+dist/

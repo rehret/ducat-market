@@ -39,6 +39,6 @@ Container.bind<ItemProvider>(ItemProvider).toConstantValue(
     new ItemProvider(
         Container.resolve<ItemCacheService>(ItemCacheService),
         Container.resolve<ItemService>(ItemService),
-        Container.resolve<Bunyan>(Bunyan)
+        Log
     )
 );

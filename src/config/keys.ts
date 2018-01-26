@@ -1,7 +1,6 @@
 export enum ConfigKeys {
     Port = 'port',
 
-    SetNames = 'set_names',
     WarframeMarketApiBaseUrl = 'warframe_market_api_baseurl',
     CacheTTL = 'cache_ttl',
 

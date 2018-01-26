@@ -7,9 +7,8 @@ const env = process.env.NODE_ENV || 'development';
 nconf
     .argv()
     .env()
-    .file('environmentConfig', path.resolve(__dirname, `${env}.json`))
+    .file('environmentConfig', path.resolve(__dirname, `${env.toLowerCase()}.json`))
     .file('defaultConfig', path.resolve(__dirname, 'default.json'))
-    .file('setNameConfig', path.resolve(__dirname, 'set-names.json'))
     .required([
         ConfigKeys.Port,
         ConfigKeys.WarframeMarketApiBaseUrl,
