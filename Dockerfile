@@ -14,7 +14,7 @@ COPY ./tsconfig.json .
 COPY ./tslint.json .
 
 # Copy the item cache (if it exists)
-COPY ./item-cache.json .
+COPY ./item-cache.* .
 
 # Build application
 ENV NODE_ENV=production
