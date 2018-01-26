@@ -10,11 +10,7 @@ RUN yarn install
 # Copy application source
 COPY ./src/ ./src/
 COPY ./types/ ./types/
-COPY ./tsconfig.json .
-COPY ./tslint.json .
-
-# Copy the item cache (if it exists)
-COPY ./item-cache.* .
+COPY *.json ./
 
 # Build application
 ENV NODE_ENV=production
