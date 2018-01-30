@@ -1,22 +1,30 @@
-FROM node:carbon
+FROM node:carbon AS Base
+WORKDIR /app
+EXPOSE 80
 
-WORKDIR /usr/src/app
-
-# Install dependencies
+# Install build & test dependencies
+FROM Base AS Dependencies
+WORKDIR /src
 COPY package.json ./
 COPY yarn.lock ./
 RUN yarn install
-
-# Copy application source
 COPY . .
 
 # Test application
+FROM Dependencies AS Test
+WORKDIR /src
 RUN yarn test
 
 # Build application
-ENV NODE_ENV=production
+FROM Dependencies AS Build
+WORKDIR /src
 RUN yarn build
 
 # Start application
-EXPOSE 8000
-CMD ["yarn", "start"]
+FROM Build AS Release
+WORKDIR /app
+COPY --from=Build /src/package.json .
+COPY --from=Build /src/yarn.lock .
+RUN yarn install --production=true
+COPY --from=Build /src/dist/ ./dist/
+ENTRYPOINT ["yarn", "start"]

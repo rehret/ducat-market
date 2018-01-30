@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  ducat-market:
+    build: .
+    image: ducat-market:latest
+    ports:
+      - "8000:8000"
