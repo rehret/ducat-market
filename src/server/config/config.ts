@@ -11,6 +11,7 @@ nconf
     .file('defaultConfig', path.resolve(__dirname, 'default.json'))
     .required([
         ConfigKeys.Port,
+        ConfigKeys.ClientPath,
         ConfigKeys.WarframeMarketApiBaseUrl,
         ConfigKeys.CacheTTL,
         ConfigKeys.LogLevel

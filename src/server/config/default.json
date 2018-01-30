@@ -1,6 +1,7 @@
 {
     "app_name": "DucatMarket",
     "port": 8000,
+    "client_path": "../client",
     "warframe_market_api_baseurl": "https://api.warframe.market/v1",
     "cache_ttl": 86400000,
     "log_level": "debug",

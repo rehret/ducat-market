@@ -8,14 +8,15 @@
   "private": true,
   "scripts": {
     "predevelop": "yarn lint",
-    "develop": "cross-env NODE_ENV=development ts-node src/index.ts | bunyan",
+    "develop": "cross-env NODE_ENV=development client_path=\"../../dist/client\" concurrently -k -n \"server,client\" -p name -s first \"ts-node src/server/index.ts --watch | bunyan\" \"webpack --progress --watch\"",
+    "postdevelop": "yarn clean",
     "lint": "tslint ./src/**/*.ts",
     "test": "jasmine-ts",
     "pretest": "yarn lint",
-    "start": "node dist/src/index.js | bunyan",
+    "start": "node dist/server/index.js | bunyan",
     "prebuild": "yarn lint",
-    "build": "tsc",
-    "postbuild": "n-copy -s src/config -d dist/src/config \"**/*.json\"",
+    "build": "tsc -p src/server/tsconfig.json && webpack --progress",
+    "postbuild": "n-copy -s src/server/config -d dist/server/config \"**/*.json\"",
     "clean": "n-clean dist"
   },
   "dependencies": {
@@ -25,27 +26,36 @@
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2",
     "nconf": "^0.10.0",
     "reflect-metadata": "^0.1.12",
     "routing-controllers": "^0.7.6",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "@types/angular": "^1.6.42",
     "@types/bunyan": "^1.8.4",
     "@types/jasmine": "^2.8.5",
+    "@types/koa": "^2.0.43",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
-    "@types/koa": "^2.0.43",
+    "@types/koa-static": "^4.0.0",
     "@types/nconf": "^0.0.36",
     "@types/node": "^9.3.0",
     "@types/shortid": "^0.0.29",
+    "angular": "^1.6.8",
+    "awesome-typescript-loader": "^3.4.1",
+    "concurrently": "^3.5.1",
     "cross-env": "^5.1.3",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^2.30.1",
     "jasmine-spec-reporter": "^4.2.1",
     "jasmine-ts": "^0.2.1",
     "npm-build-tools": "^2.2.5",
     "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
     "typemoq": "^2.1.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
   }
 }

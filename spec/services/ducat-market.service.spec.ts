@@ -1,7 +1,7 @@
 import { IMock, Mock } from 'typemoq';
-import { DucatMarketService } from '../../src/services/ducat-market.service';
-import { Item } from '../../src/models/item';
-import { ItemProvider } from '../../src/services/item.provider';
+import { DucatMarketService } from '../../src/server/services/ducat-market.service';
+import { Item } from '../../src/server/models/item';
+import { ItemProvider } from '../../src/server/services/item.provider';
 
 describe('DucatMarketService', () => {
     describe('GetTopItems', () => {

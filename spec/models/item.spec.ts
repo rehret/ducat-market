@@ -1,4 +1,4 @@
-import { Item } from '../../src/models/item';
+import { Item } from '../../src/server/models/item';
 
 describe('Item', () => {
     describe('model', () => {

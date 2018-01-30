@@ -1,10 +1,10 @@
 import { IMock, Mock, It, Times } from 'typemoq';
 import * as Bunyan from 'bunyan';
-import { ItemProvider } from '../../src/services/item.provider';
-import { ItemCacheService } from '../../src/services/item-cache.service';
-import { ItemService } from '../../src/services/item.service';
-import { Item } from '../../src/models/item';
-import { Config, ConfigKeys } from '../../src/config/config';
+import { ItemProvider } from '../../src/server/services/item.provider';
+import { ItemCacheService } from '../../src/server/services/item-cache.service';
+import { ItemService } from '../../src/server/services/item.service';
+import { Item } from '../../src/server/models/item';
+import { Config, ConfigKeys } from '../../src/server/config/config';
 
 describe('ItemProvider', () => {
     let itemCacheServiceMock: IMock<ItemCacheService>;

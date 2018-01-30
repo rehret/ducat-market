@@ -1,8 +1,8 @@
 import * as Bunyan from 'bunyan';
 import { IMock, Mock, It, Times } from 'typemoq';
-import { ItemService } from '../../src/services/item.service';
-import { WarframeMarketService } from '../../src/services/warframe-market.service';
-import { Item } from '../../src/models/item';
+import { ItemService } from '../../src/server/services/item.service';
+import { WarframeMarketService } from '../../src/server/services/warframe-market.service';
+import { Item } from '../../src/server/models/item';
 
 describe('ItemService', () => {
     describe('GetItems()', () => {
