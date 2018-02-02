@@ -28,9 +28,24 @@ module.exports = {
                     loader: 'html-loader',
                     options: {
                         minimize: true,
-                        exportAsEs6Default: true
+                        exportAsEs6Default: true,
+                        interpolate: 'require'
                     }
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
             }
         ]
     },

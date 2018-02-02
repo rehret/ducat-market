@@ -1,11 +1,16 @@
-<a ng-repeat="item in items" ng-href="https://warframe.market/items/{{item.UrlName}}">
-    <div>
-        {{ item.Name }}
-    </div>
-    <div>
-        {{ item.Ducats }} / {{ item.Price }}
-    </div>
-    <div>
-        {{ item.DucatPlatRatio.toFixed(2) }}
-    </div>
-</a>
+<div class="header">
+Ducat Market
+</div>
+<div class="content">
+    <a class="item" ng-repeat="item in items" ng-href="https://warframe.market/items/{{item.UrlName}}">
+        <div>
+            {{ item.Name }}
+        </div>
+        <div>
+            {{ item.Ducats }} / {{ item.Price }}
+        </div>
+        <div>
+            {{ item.DucatPlatRatio.toFixed(2) }}
+        </div>
+    </a>
+</div>

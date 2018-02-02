@@ -2,6 +2,7 @@ import { IController, IScope, IDirective } from 'angular';
 import DucatMarketTemplate from '../templates/ducat-market.template.html';
 import { Item } from '../../shared/models/item';
 import { DucatMarketService, DucatMarketServiceName } from '../services/ducat-market.service';
+import '../styles/ducat-market.style.scss';
 
 export interface IDucatMarketCtrlScope extends IScope {
     items: Item[];
