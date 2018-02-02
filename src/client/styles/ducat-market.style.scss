@@ -12,23 +12,34 @@ ducat-market {
     height: 60px;
     display: block;
     background: rgb(50, 50, 50);
-    color: white;
-    font-weight: 100;
-    font-size: 40px;
-    line-height: 60px;
-    padding-left: 40px;
+
+    .title {
+        color: white;
+        font-weight: 100;
+        font-size: 30px;
+        line-height: 60px;
+        padding-left: 40px;
+    }
 }
 
-.content a.item {
-    text-decoration: none;
-    color: black;
-    display: block;
+.content {
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto;
 
-    &:hover {
-        text-decoration: underline;
-    }
+    a.item {
+        text-decoration: none;
+        color: black;
+        display: block;
+        background: rgb(200, 200, 200);
+        padding: 10px;
 
-    &:not(:last-child) {
-        margin-bottom: 20px;
+        &:hover {
+            background: rgb(230, 230, 230);
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
     }
 }
