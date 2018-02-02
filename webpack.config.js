@@ -28,8 +28,7 @@ module.exports = {
                     loader: 'html-loader',
                     options: {
                         minimize: true,
-                        exportAsEs6Default: true,
-                        interpolate: 'require'
+                        exportAsEs6Default: true
                     }
                 }
             },
