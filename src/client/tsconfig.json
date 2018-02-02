@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig",
   "compilerOptions": {
     /* Basic Options */
     "outDir": "../../dist/client",            /* Redirect output structure to the directory. */

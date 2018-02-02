@@ -1,3 +1,11 @@
-<div>
-    {{ message }}
-</div>
+<a ng-repeat="item in items" ng-href="https://warframe.market/items/{{item.UrlName}}">
+    <div>
+        {{ item.Name }}
+    </div>
+    <div>
+        {{ item.Ducats }} / {{ item.Price }}
+    </div>
+    <div>
+        {{ item.DucatPlatRatio.toFixed(2) }}
+    </div>
+</a>

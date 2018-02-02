@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "predevelop": "yarn lint",
-    "develop": "cross-env NODE_ENV=development client_path=\"../../dist/client\" concurrently -k -n \"server,client\" -p name -s first \"ts-node src/server/index.ts --watch | bunyan\" \"webpack --progress --watch\"",
+    "develop": "cross-env NODE_ENV=development client_path=\"../../dist/client\" concurrently -k -n \"server,client\" -p name -s first \"cross-env port=8000 ts-node src/server/index.ts --watch | bunyan\" \"webpack --progress --watch\"",
     "postdevelop": "yarn clean",
     "lint": "tslint ./src/**/*.ts",
     "test": "jasmine-ts",

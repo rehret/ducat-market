@@ -1,18 +1,24 @@
 import { IController, IScope, IDirective } from 'angular';
 import DucatMarketTemplate from '../templates/ducat-market.template.html';
+import { Item } from '../models/item';
+import { DucatMarketService, DucatMarketServiceName } from '../services/ducat-market.service';
 
 export interface IDucatMarketCtrlScope extends IScope {
-    message: string;
+    items: Item[];
 }
 
 export const DucatMarketCtrlName = 'ducat-market-controller';
 export class DucatMarketCtrl implements IController {
     public static $inject = [
-        '$scope'
+        '$scope',
+        DucatMarketServiceName
     ];
 
-    constructor(private $scope: IDucatMarketCtrlScope) {
-        this.$scope.message = 'Hello, World!';
+    constructor(private $scope: IDucatMarketCtrlScope, private ducatMarketService: DucatMarketService) {}
+
+    public $onInit() {
+        this.ducatMarketService.GetTopItems()
+            .then((items) => this.$scope.items = items);
     }
 }
 
