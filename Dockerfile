@@ -1,18 +1,12 @@
-FROM node:carbon AS Base
-WORKDIR /app
-EXPOSE 80
-
-FROM Base AS ProdDependencies
-WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install --production=true
-
-FROM ProdDependencies AS Dependencies
+FROM node:carbon AS ProdDependencies
 WORKDIR /src
 COPY package.json .
 COPY yarn.lock .
-COPY --from=ProdDependencies /app/node_modules ./
+RUN yarn install --production
+
+FROM ProdDependencies AS Dependencies
+WORKDIR /src
+COPY --from=ProdDependencies /src/node_modules ./node_modules
 RUN yarn install
 COPY . .
 
@@ -20,11 +14,14 @@ FROM Dependencies AS Test
 WORKDIR /src
 RUN yarn test
 
-FROM Dependencies AS Build
+FROM Test AS Build
 WORKDIR /src
 RUN yarn build
 
-FROM Build AS Release
+FROM node:carbon AS Release
 WORKDIR /app
+COPY package.json .
+COPY --from=ProdDependencies /src/node_modules ./node_modules
 COPY --from=Build /src/dist/ ./dist/
+EXPOSE 80
 ENTRYPOINT ["yarn", "start"]
