@@ -1,6 +1,6 @@
 import { IMock, Mock } from 'typemoq';
 import { DucatMarketService } from '../../src/server/services/ducat-market.service';
-import { Item } from '../../src/server/models/item';
+import { Item } from '../../src/shared/models/item';
 import { ItemProvider } from '../../src/server/services/item.provider';
 
 describe('DucatMarketService', () => {

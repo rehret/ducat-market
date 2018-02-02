@@ -1,6 +1,6 @@
 import * as Bunyan from 'bunyan';
 import { Config, ConfigKeys } from '../config/config';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { ItemService } from './item.service';
 import { ItemCacheService } from './item-cache.service';
 import { injectable, inject } from 'inversify';

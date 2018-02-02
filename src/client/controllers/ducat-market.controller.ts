@@ -1,6 +1,6 @@
 import { IController, IScope, IDirective } from 'angular';
 import DucatMarketTemplate from '../templates/ducat-market.template.html';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { DucatMarketService, DucatMarketServiceName } from '../services/ducat-market.service';
 
 export interface IDucatMarketCtrlScope extends IScope {

@@ -2,7 +2,7 @@ import { IMock, Mock, It, Times } from 'typemoq';
 import { AxiosStatic, AxiosInstance, AxiosResponse } from 'axios';
 import { WarframeMarketService } from '../../src/server/services/warframe-market.service';
 import { Config, ConfigKeys } from '../../src/server/config/config';
-import { Item } from '../../src/server/models/item';
+import { Item } from '../../src/shared/models/item';
 
 describe('WarframeMarketService', () => {
     describe('constructor', () => {

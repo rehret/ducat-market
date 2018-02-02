@@ -3,7 +3,7 @@ import * as Bunyan from 'bunyan';
 import { ItemProvider } from '../../src/server/services/item.provider';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
 import { ItemService } from '../../src/server/services/item.service';
-import { Item } from '../../src/server/models/item';
+import { Item } from '../../src/shared/models/item';
 import { Config, ConfigKeys } from '../../src/server/config/config';
 
 describe('ItemProvider', () => {

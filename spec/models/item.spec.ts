@@ -1,4 +1,4 @@
-import { Item } from '../../src/server/models/item';
+import { Item } from '../../src/shared/models/item';
 
 describe('Item', () => {
     describe('model', () => {

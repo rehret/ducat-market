@@ -2,7 +2,7 @@ import { Mock, It, Times } from 'typemoq';
 import * as fs from 'fs';
 import * as Bunyan from 'bunyan';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
-import { Item } from '../../src/server/models/item';
+import { Item } from '../../src/shared/models/item';
 
 describe('ItemCacheService', () => {
     describe('CacheItems', () => {

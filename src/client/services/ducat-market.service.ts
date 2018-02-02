@@ -1,5 +1,5 @@
 import { IPromise, IHttpService } from 'angular';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 
 export const DucatMarketServiceName = 'ducat-market.service';
 export class DucatMarketService {

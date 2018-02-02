@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance, AxiosStatic } from 'axios';
 import { Config, ConfigKeys } from '../config/config';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { injectable, inject } from 'inversify';
 
 @injectable()

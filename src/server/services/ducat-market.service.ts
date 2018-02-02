@@ -1,4 +1,4 @@
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { ItemProvider } from './item.provider';
 import { injectable, inject } from 'inversify';
 

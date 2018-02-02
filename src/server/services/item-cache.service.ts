@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as Bunyan from 'bunyan';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { injectable, inject } from 'inversify';
 
 @injectable()

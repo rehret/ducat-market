@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from 'routing-controllers';
 import { injectable, inject } from 'inversify';
-import { Item } from '../models/item';
+import { Item } from '../../shared/models/item';
 import { DucatMarketService } from '../services/ducat-market.service';
 import { ItemProvider } from '../services/item.provider';
 
