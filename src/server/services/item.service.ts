@@ -40,7 +40,7 @@ export class ItemService {
 
             const itemsInSet = (await this.warframeMarketService.GetItemsInSet(set))
                 .filter((i) => !i.set_root)
-                .map((i) => new Item(i.en.item_name, i.url_name, i.ducats));
+                .map((i) => new Item(i.en.item_name, i.url_name, i.ducats, 0, i.sub_icon));
 
             setItems = setItems.concat(itemsInSet);
         }

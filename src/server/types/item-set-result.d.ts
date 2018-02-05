@@ -5,6 +5,7 @@ declare type ItemInSet = {
     url_name: string
     ducats: number
     set_root: boolean
+    sub_icon: string
 };
 
 declare type ItemSetResult = {

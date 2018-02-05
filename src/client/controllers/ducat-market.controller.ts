@@ -15,11 +15,17 @@ export class DucatMarketCtrl implements IController {
         DucatMarketServiceName
     ];
 
+    private static iconBaseUrl = 'https://warframe.market/static/assets';
+
     constructor(private $scope: IDucatMarketCtrlScope, private ducatMarketService: DucatMarketService) {}
 
     public $onInit() {
         this.ducatMarketService.GetTopItems()
             .then((items) => this.$scope.items = items);
+    }
+
+    public getIconUrl(item: Item) {
+        return `${DucatMarketCtrl.iconBaseUrl}/${item.IconPath}`;
     }
 }
 

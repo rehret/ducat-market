@@ -34,7 +34,13 @@ export class ItemCacheService {
                     } else {
                         this.log.info('Item cache loaded');
                         resolve(JSON.parse(fileContents).map((jsonItem: Item) => {
-                            return new Item(jsonItem.Name, jsonItem.UrlName, jsonItem.Ducats, jsonItem.Price);
+                            return new Item(
+                                jsonItem.Name,
+                                jsonItem.UrlName,
+                                jsonItem.Ducats,
+                                jsonItem.Price,
+                                jsonItem.IconPath
+                            );
                         }));
                     }
                 });

@@ -21,7 +21,7 @@ export class DucatMarketService {
     public GetTopItems(limit?: number): IPromise<Item[]> {
         return this.$http.get<Item[]>(`${DucatMarketService.baseUrl}/items/top/${limit ? limit : ''}`)
             .then((response) => response.data.map((item) => {
-                return new Item(item.Name, item.UrlName, item.Ducats, item.Price);
+                return new Item(item.Name, item.UrlName, item.Ducats, item.Price, item.IconPath);
             }));
     }
 }
