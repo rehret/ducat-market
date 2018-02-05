@@ -7,13 +7,18 @@
     <a class="item" ng-repeat="item in items" ng-href="https://warframe.market/items/{{item.UrlName}}" target="_blank">
         <img class="icon" ng-src="https://warframe.market/static/assets/{{item.IconPath}}" />
         <div class="info">
-            <div>
+            <div class="name">
                 {{ item.Name }}
             </div>
-            <div>
-                {{ item.Ducats }} <img class="ducat" alt="ducats" src="../assets/ducat.png" />
-                /
-                {{ item.Price }} <img class="plat" alt="platinum" src="../assets/platinum.png" />
+            <div class="value-row">
+                <div class="value-box">
+                    <div class="value-icon"><img class="ducat" alt="ducats" src="../assets/ducat.png" /></div>
+                    <div class="value-text">{{ item.Ducats }}</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-icon"><img class="plat" alt="platinum" src="../assets/platinum.png" /></div>
+                    <div class="value-text">{{ item.Price }}</div>
+                </div>
             </div>
             <div>
                 {{ item.DucatPlatRatio.toFixed(2) }}
