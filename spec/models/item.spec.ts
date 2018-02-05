@@ -8,11 +8,12 @@ describe('Item', () => {
 
             // Assert
             const itemProperties = Object.getOwnPropertyNames(item);
-            expect(itemProperties.length).toBe(4);
+            expect(itemProperties.length).toBe(5);
             expect(itemProperties.includes('Name'));
             expect(itemProperties.includes('UrlName'));
             expect(itemProperties.includes('Price'));
             expect(itemProperties.includes('Ducats'));
+            expect(itemProperties.includes('IconPath'));
         });
     });
 
