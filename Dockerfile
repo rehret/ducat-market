@@ -21,6 +21,7 @@ RUN yarn build
 FROM node:carbon AS Release
 WORKDIR /app
 COPY package.json .
+COPY openapi.json .
 COPY --from=ProdDependencies /src/node_modules ./node_modules
 COPY --from=Build /src/dist/ ./dist/
 EXPOSE 80
