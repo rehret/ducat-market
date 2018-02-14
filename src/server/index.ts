@@ -1,14 +1,22 @@
 import 'reflect-metadata';
 import * as path from 'path';
-import { createKoaServer, useContainer } from 'routing-controllers';
+import * as fs from 'fs';
+import { useKoaServer, useContainer } from 'routing-controllers';
+import * as Koa from 'koa';
 import * as KoaStatic from 'koa-static';
+import { ui } from 'swagger2-koa';
 import { Container } from './config/inversify-config';
 import { Config, ConfigKeys } from './config/config';
 import { Log } from './log';
 
 useContainer(Container);
 
-const app = createKoaServer({
+const app = new Koa();
+
+const swaggerDoc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../openapi.json'), 'utf-8'));
+app.use(ui(swaggerDoc, '/api/docs'));
+
+useKoaServer(app, {
     controllers: [`${__dirname}/controllers/*.[tj]s`],
     middlewares: [`${__dirname}/middleware/*.[tj]s`],
     defaultErrorHandler: false
