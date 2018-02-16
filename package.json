@@ -40,7 +40,7 @@
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
     "@types/koa-static": "^4.0.0",
-    "@types/nconf": "^0.0.36",
+    "@types/nconf": "^0.0.37",
     "@types/node": "^9.4.6",
     "@types/shortid": "^0.0.29",
     "angular": "^1.6.9",
