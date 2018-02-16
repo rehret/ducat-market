@@ -22,14 +22,14 @@ export class ItemProvider {
         this.log = log;
 
         // begin prefetching items instead of waiting for the first request
-        this.GetItems();
+        this.itemPromise = this.GetItems();
     }
 
     public get Items(): Promise<Item[]> {
         return this.itemPromise;
     }
 
-    private async GetItems(): Promise<void> {
+    private async GetItems(): Promise<Item[]> {
         // only run once (itemPromise is undefined at instantiation)
         if (this.itemPromise === undefined) {
             if (this.itemCacheService.HasCache()) {
@@ -52,6 +52,6 @@ export class ItemProvider {
             }, Config.get(ConfigKeys.CacheTTL));
         }
 
-        return;
+        return this.itemPromise;
     }
 }
