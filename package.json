@@ -10,8 +10,7 @@
     "predevelop": "yarn lint",
     "develop": "cross-env NODE_ENV=development client_path=\"../../dist/client\" concurrently -k -n \"server,client\" -p name -s first \"cross-env port=8000 ts-node src/server/index.ts --watch | bunyan\" \"webpack --progress --watch\"",
     "lint": "tslint ./src/**/*.ts",
-    "test": "jasmine-ts",
-    "pretest": "yarn lint",
+    "test": "yarn build && jasmine-ts",
     "start": "node dist/server/index.js | bunyan",
     "prebuild": "yarn lint",
     "build": "tsc -p src/server/tsconfig.json && webpack --progress",
@@ -19,6 +18,7 @@
     "clean": "n-clean dist"
   },
   "dependencies": {
+    "ajv": "^5.0.0",
     "axios": "^0.17.1",
     "bunyan": "^1.8.12",
     "inversify": "^4.10.0",
