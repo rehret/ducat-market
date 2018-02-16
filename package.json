@@ -33,7 +33,7 @@
     "swagger2-koa": "^0.0.43"
   },
   "devDependencies": {
-    "@types/angular": "^1.6.42",
+    "@types/angular": "^1.6.43",
     "@types/bunyan": "^1.8.4",
     "@types/jasmine": "^2.8.6",
     "@types/koa": "^2.0.44",
