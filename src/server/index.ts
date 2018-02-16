@@ -17,14 +17,14 @@ const swaggerDoc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../ope
 app.use(ui(swaggerDoc, '/api/docs'));
 
 useKoaServer(app, {
-    controllers: [`${__dirname}/controllers/*.[tj]s`],
-    middlewares: [`${__dirname}/middleware/*.[tj]s`],
-    defaultErrorHandler: false
+	controllers: [`${__dirname}/controllers/*.[tj]s`],
+	middlewares: [`${__dirname}/middleware/*.[tj]s`],
+	defaultErrorHandler: false
 });
 
 app.use(KoaStatic(path.resolve(__dirname, Config.get(ConfigKeys.ClientPath))));
 
 const port = Config.get(ConfigKeys.Port);
 app.listen(port, () => {
-    Log.info(`Listening on :${port}`);
+	Log.info(`Listening on :${port}`);
 });

@@ -3,5 +3,5 @@ import { DucatMarketDirective, DucatMarketDirectiveName } from './controllers/du
 import { DucatMarketService, DucatMarketServiceName } from './services/ducat-market.service';
 
 angular.module('ducat-market', [])
-    .service(DucatMarketServiceName, DucatMarketService)
-    .directive(DucatMarketDirectiveName, DucatMarketDirective);
+	.service(DucatMarketServiceName, DucatMarketService)
+	.directive(DucatMarketDirectiveName, DucatMarketDirective);

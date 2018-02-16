@@ -5,35 +5,35 @@ import { DucatMarketService, DucatMarketServiceName } from '../services/ducat-ma
 import '../styles/ducat-market.style.scss';
 
 export interface IDucatMarketCtrlScope extends IScope {
-    items: Item[];
+	items: Item[];
 }
 
 export const DucatMarketCtrlName = 'ducat-market-controller';
 export class DucatMarketCtrl implements IController {
-    public static $inject = [
-        '$scope',
-        DucatMarketServiceName
-    ];
+	public static $inject = [
+		'$scope',
+		DucatMarketServiceName
+	];
 
-    private static iconBaseUrl = 'https://warframe.market/static/assets';
+	private static iconBaseUrl = 'https://warframe.market/static/assets';
 
-    constructor(private $scope: IDucatMarketCtrlScope, private ducatMarketService: DucatMarketService) {}
+	constructor(private $scope: IDucatMarketCtrlScope, private ducatMarketService: DucatMarketService) { }
 
-    public $onInit() {
-        this.ducatMarketService.GetTopItems()
-            .then((items) => this.$scope.items = items);
-    }
+	public $onInit() {
+		this.ducatMarketService.GetTopItems()
+			.then((items) => this.$scope.items = items);
+	}
 
-    public getIconUrl(item: Item) {
-        return `${DucatMarketCtrl.iconBaseUrl}/${item.IconPath}`;
-    }
+	public getIconUrl(item: Item) {
+		return `${DucatMarketCtrl.iconBaseUrl}/${item.IconPath}`;
+	}
 }
 
 export const DucatMarketDirectiveName = 'ducatMarket';
 export function DucatMarketDirective(): IDirective {
-    return {
-        restrict: 'E',
-        controller: DucatMarketCtrl,
-        template: DucatMarketTemplate
-    };
+	return {
+		restrict: 'E',
+		controller: DucatMarketCtrl,
+		template: DucatMarketTemplate
+	};
 }

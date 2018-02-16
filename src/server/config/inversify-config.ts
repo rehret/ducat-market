@@ -36,9 +36,9 @@ Container.bind<WarframeMarketService>(WarframeMarketService).toSelf();
 
 // Instantiate ItemProvider at config-time to begin prefetching items
 Container.bind<ItemProvider>(ItemProvider).toConstantValue(
-    new ItemProvider(
-        Container.resolve<ItemCacheService>(ItemCacheService),
-        Container.resolve<ItemService>(ItemService),
-        Log
-    )
+	new ItemProvider(
+		Container.resolve<ItemCacheService>(ItemCacheService),
+		Container.resolve<ItemService>(ItemService),
+		Log
+	)
 );

@@ -6,22 +6,22 @@ import * as Bunyan from 'bunyan';
 @injectable()
 @Middleware({ type: 'before' })
 export class ErrorLogger implements KoaMiddlewareInterface {
-    private log: Bunyan;
+	private log: Bunyan;
 
-    constructor(@inject(Bunyan) log: Bunyan) {
-        this.log = log;
-    }
+	constructor(@inject(Bunyan) log: Bunyan) {
+		this.log = log;
+	}
 
-    public async use(ctx: Router.IRouterContext, next: (err?: any) => Promise<any>): Promise<any> {
-        try {
-            return await next();
-        } catch (err) {
-            this.log.error({
-                requestId: ctx.state.requestId,
-                err
-            }, 'Server error');
+	public async use(ctx: Router.IRouterContext, next: (err?: any) => Promise<any>): Promise<any> {
+		try {
+			return await next();
+		} catch (err) {
+			this.log.error({
+				requestId: ctx.state.requestId,
+				err
+			}, 'Server error');
 
-            ctx.throw(err);
-        }
-    }
+			ctx.throw(err);
+		}
+	}
 }

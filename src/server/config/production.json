@@ -1,4 +1,4 @@
 {
-    "log_level": "info",
-    "log_to_console": true
+	"log_level": "info",
+	"log_to_console": true
 }

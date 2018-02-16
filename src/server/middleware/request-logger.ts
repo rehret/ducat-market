@@ -9,19 +9,19 @@ const ignoredUrls: string[] = [];
 @injectable()
 @Middleware({ type: 'before' })
 export class RequestLogger implements KoaMiddlewareInterface {
-    private log: Bunyan;
+	private log: Bunyan;
 
-    constructor(@inject(Bunyan) log: Bunyan) {
-        this.log = log;
-    }
+	constructor(@inject(Bunyan) log: Bunyan) {
+		this.log = log;
+	}
 
-    public async use(ctx: Router.IRouterContext, next: (err?: any) => Promise<any>): Promise<any> {
-        if (!ignoredUrls.includes(ctx.originalUrl)) {
-            this.log.info({
-                requestId: ctx.state.requestId,
-                req: ctx.request
-            }, 'Request received');
-        }
-        return await next();
-    }
+	public async use(ctx: Router.IRouterContext, next: (err?: any) => Promise<any>): Promise<any> {
+		if (!ignoredUrls.includes(ctx.originalUrl)) {
+			this.log.info({
+				requestId: ctx.state.requestId,
+				req: ctx.request
+			}, 'Request received');
+		}
+		return await next();
+	}
 }
