@@ -22,7 +22,7 @@
     "axios": "^0.17.1",
     "bunyan": "^1.8.12",
     "inversify": "^4.9.0",
-    "koa": "^2.4.1",
+    "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
