@@ -1,0 +1,20 @@
+{
+	"extends": "../tsconfig",
+	"compilerOptions": {
+		/* Basic Options */
+		"outDir": "../dist", /* Redirect output structure to the directory. */
+		"rootDirs": [
+			"./",
+			"../src"
+		],
+		"typeRoots": [
+			"../node_modules/@types",
+			"../src/server/types"
+		]
+	},
+	"include": [
+		"../spec/**/*.ts",
+		"../node_modules/@types",
+		"../src/server/types"
+	]
+}
