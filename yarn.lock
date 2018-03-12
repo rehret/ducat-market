@@ -2376,7 +2376,7 @@ is-my-ip-valid@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-my-ip-valid/-/is-my-ip-valid-1.0.0.tgz#7b351b8e8edd4d3995d4d066680e664d94696824"
 
-is-my-json-valid@^2.12.4, is-my-json-valid@^2.17.1:
+is-my-json-valid@^2.12.4, is-my-json-valid@^2.17.2:
   version "2.17.2"
   resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.17.2.tgz#6b2103a288e94ef3de5cf15d29dd85fc4b78d65c"
   dependencies:
@@ -2686,7 +2686,7 @@ koa-static@^4.0.2:
     debug "^2.6.8"
     koa-send "^4.1.0"
 
-koa@^2.4.1, koa@^2.5.0:
+koa@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.5.0.tgz#b0fbe1e195e43b27588a04fd0be0ddaeca2c154c"
   dependencies:
@@ -4681,29 +4681,29 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
-swagger-ui-dist@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.10.0.tgz#8a5af33ff2263c715a143f73f2a8d47d539943ef"
+swagger-ui-dist@^3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.12.0.tgz#0a8f34497bc67a7677b1344ecd10e61b3f0a2d70"
 
-swagger2-koa@^0.0.43:
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/swagger2-koa/-/swagger2-koa-0.0.43.tgz#9b2741ce653c5c295848ba5c7bdfad8a20aff476"
+swagger2-koa@^0.0.44:
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/swagger2-koa/-/swagger2-koa-0.0.44.tgz#30191ebce5afb24ca96409064ce924fb6fce8bfd"
   dependencies:
     debug "^3.1.0"
-    koa "^2.4.1"
+    koa "^2.5.0"
     koa-body "^2.5.0"
     koa-convert "^1.2.0"
     koa-cors "0.0.16"
     koa-router "^7.4.0"
     koa-send "^3.3.0"
-    swagger-ui-dist "^3.10.0"
-    swagger2 "^0.0.29"
+    swagger-ui-dist "^3.12.0"
+    swagger2 "^0.0.30"
 
-swagger2@^0.0.29:
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/swagger2/-/swagger2-0.0.29.tgz#dd6eecfc804bf9e648218a9923f44dec0c4e733e"
+swagger2@^0.0.30:
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/swagger2/-/swagger2-0.0.30.tgz#12d96b08074459760a20558b27849ef35f49ebbc"
   dependencies:
-    is-my-json-valid "^2.17.1"
+    is-my-json-valid "^2.17.2"
     json-schema-deref-sync "^0.4.0"
     yamljs "^0.3.0"
 
