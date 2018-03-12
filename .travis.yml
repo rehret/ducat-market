@@ -3,6 +3,6 @@ node_js:
   - "8"
 cache:
   yarn: true
-script: yarn test
+script: yarn build && yarn test
 notifications:
   email: false

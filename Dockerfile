@@ -10,13 +10,13 @@ COPY --from=ProdDependencies /src/node_modules ./node_modules
 RUN yarn install
 COPY . .
 
-FROM Dependencies AS Test
-WORKDIR /src
-RUN yarn test
-
-FROM Test AS Build
+FROM Dependencies AS Build
 WORKDIR /src
 RUN yarn build
+
+FROM Build AS Test
+WORKDIR /src
+RUN yarn test
 
 FROM node:carbon AS Release
 WORKDIR /app

@@ -3,6 +3,6 @@ version: "3"
 services:
   ducat-market:
     build: .
-    image: ducat-market:latest
+    image: ducat-market:dev
     ports:
       - "8000:80"
