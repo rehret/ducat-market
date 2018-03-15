@@ -1,8 +1,20 @@
 language: node_js
+
 node_js:
   - "8"
+
 cache:
   yarn: true
-script: yarn build && yarn test:no-build
+
+services:
+  - docker
+
+install:
+  - docker build -t ducat-market:travis-ci .
+  - docker run -d -p 127.0.0.1:80:80 --name ducat-market ducat-market:travis-ci
+
+script:
+  - docker ps | grep -q ducat-market
+
 notifications:
   email: false
