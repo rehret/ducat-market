@@ -56,7 +56,7 @@ describe('ItemProvider', () => {
 		sinonSandbox.restore();
 	});
 
-	describe('constructor', () => {
+	describe('Constructor', () => {
 		it('should check if the items are cached', async () => {
 			// Arrange
 			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);

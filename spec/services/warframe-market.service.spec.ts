@@ -6,7 +6,7 @@ import { Config, ConfigKeys } from '../../src/server/config/config';
 import { Item } from '../../src/shared/models/item';
 
 describe('WarframeMarketService', () => {
-	describe('constructor', () => {
+	describe('Constructor', () => {
 		it('should call AxiosStatic.create() once', () => {
 			// Arrange
 			const axiosMock = Mock.ofType<AxiosStatic>();
