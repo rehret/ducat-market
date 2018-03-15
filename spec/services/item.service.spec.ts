@@ -1,5 +1,6 @@
 import * as Bunyan from 'bunyan';
 import { IMock, Mock, It, Times } from 'typemoq';
+import { expect } from 'chai';
 import { ItemService } from '../../src/server/services/item.service';
 import { WarframeMarketService } from '../../src/server/services/warframe-market.service';
 import { Item } from '../../src/shared/models/item';
@@ -33,9 +34,8 @@ describe('ItemService', () => {
 			const val = await itemService.GetItems();
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBeGreaterThan(0);
-			expect(val[0] instanceof Item);
+			expect(val).to.be.an('array').with.length.greaterThan(0);
+			val.forEach((item) => expect(item).to.be.an.instanceof(Item));
 		});
 
 		it('should call GetItemManifest once', async () => {

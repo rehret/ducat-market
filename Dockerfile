@@ -16,7 +16,7 @@ RUN yarn build
 
 FROM Build AS Test
 WORKDIR /src
-RUN yarn test
+RUN yarn test:no-build
 
 FROM node:carbon AS Release
 WORKDIR /app

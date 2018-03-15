@@ -1,4 +1,6 @@
 import { IMock, Mock, It, Times } from 'typemoq';
+import { expect } from 'chai';
+import { sandbox, SinonSandbox } from 'sinon';
 import * as Bunyan from 'bunyan';
 import { ItemProvider } from '../../src/server/services/item.provider';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
@@ -10,8 +12,11 @@ describe('ItemProvider', () => {
 	let itemCacheServiceMock: IMock<ItemCacheService>;
 	let itemServiceMock: IMock<ItemService>;
 	let logMock: IMock<Bunyan>;
+	let sinonSandbox: SinonSandbox;
 
 	beforeEach(() => {
+		sinonSandbox = sandbox.create();
+
 		itemCacheServiceMock = Mock.ofType<ItemCacheService>();
 		itemServiceMock = Mock.ofType<ItemService>();
 		logMock = Mock.ofType<Bunyan>();
@@ -47,10 +52,14 @@ describe('ItemProvider', () => {
 		});
 	});
 
+	afterEach(() => {
+		sinonSandbox.restore();
+	});
+
 	describe('constructor', () => {
 		it('should check if the items are cached', async () => {
 			// Arrange
-			spyOn(global, 'setInterval').and.callFake(() => null);
+			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);
 
 			// Act
 			await new ItemProvider(
@@ -66,7 +75,7 @@ describe('ItemProvider', () => {
 		it('should load items from the cache if the cache exists', async () => {
 			// Arrange
 			itemCacheServiceMock.setup((x) => x.HasCache()).returns(() => true);
-			spyOn(global, 'setInterval').and.callFake(() => null);
+			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);
 
 			// Act
 			await new ItemProvider(
@@ -82,7 +91,7 @@ describe('ItemProvider', () => {
 		it('should load items from ItemService if cache does not exist', async () => {
 			// Arrange
 			itemCacheServiceMock.setup((x) => x.HasCache()).returns(() => false);
-			spyOn(global, 'setInterval').and.callFake(() => null);
+			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);
 
 			// Act
 			await new ItemProvider(
@@ -98,7 +107,7 @@ describe('ItemProvider', () => {
 		it('should cache items from ItemService if cache does not exist', async () => {
 			// Arrange
 			itemCacheServiceMock.setup((x) => x.HasCache()).returns(() => false);
-			spyOn(global, 'setInterval').and.callFake(() => null);
+			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);
 
 			// Act
 			await new ItemProvider(
@@ -114,7 +123,7 @@ describe('ItemProvider', () => {
 		it('should set an interval for fetching new items', async () => {
 			// Arrange
 			let intervalTime = 0;
-			spyOn(global, 'setInterval').and.callFake((fn: () => void, interval: number) => {
+			sinonSandbox.stub(global, 'setInterval').callsFake((fn: () => void, interval: number) => {
 				fn;
 				intervalTime = interval;
 			});
@@ -127,13 +136,13 @@ describe('ItemProvider', () => {
 			);
 
 			// Assert
-			expect(intervalTime).toBe(Config.get(ConfigKeys.CacheTTL));
+			expect(intervalTime).to.equal(Config.get(ConfigKeys.CacheTTL));
 		});
 
 		it('should fetch updated items after the interval timeout', async () => {
 			// Arrange
 			let intervalFn = () => null;
-			spyOn(global, 'setInterval').and.callFake((fn: () => null) => {
+			sinonSandbox.stub(global, 'setInterval').callsFake((fn: () => null) => {
 				intervalFn = fn;
 			});
 
@@ -156,7 +165,8 @@ describe('ItemProvider', () => {
 		it('should return an array of type Item', async () => {
 			// Arrange
 			itemCacheServiceMock.setup((x) => x.HasCache()).returns(() => true);
-			spyOn(global, 'setInterval').and.callFake(() => null);
+			sinonSandbox.stub(global, 'setInterval').callsFake(() => null);
+
 			const itemProvider = new ItemProvider(
 				itemCacheServiceMock.object,
 				itemServiceMock.object,
@@ -167,9 +177,8 @@ describe('ItemProvider', () => {
 			const val = await itemProvider.Items;
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBeGreaterThan(0);
-			val.forEach((item) => expect(item instanceof Item));
+			expect(val).to.be.an('array').and.have.length.greaterThan(0);
+			val.forEach((item) => expect(item).to.be.an.instanceof(Item));
 		});
 	});
 });

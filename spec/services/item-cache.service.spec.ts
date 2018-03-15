@@ -1,33 +1,44 @@
 import { Mock, It, Times } from 'typemoq';
+import { expect } from 'chai';
+import { sandbox, SinonSandbox } from 'sinon';
 import * as fs from 'fs';
 import * as Bunyan from 'bunyan';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
 import { Item } from '../../src/shared/models/item';
 
 describe('ItemCacheService', () => {
+	let sinonSandbox: SinonSandbox;
+	beforeEach(() => {
+		sinonSandbox = sandbox.create();
+	});
+
+	afterEach(() => {
+		sinonSandbox.restore();
+	});
+
 	describe('CacheItems', () => {
 		it('should call fs.writeFile()', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			const writeFileSpy = spyOn(fs, 'writeFile').and.returnValue(null);
+			const writeFileSpy = sinonSandbox.stub(fs, 'writeFile').returns(null);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			await itemCacheService.CacheItems([]);
 
 			// Assert
-			expect(writeFileSpy.calls.count()).toBe(1);
+			expect(writeFileSpy.callCount).to.equal(1);
 		});
 
 		it('should call Bunyan.info() when successful', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			const writeFileSpy = spyOn(fs, 'writeFile').and.returnValue(null);
+			const writeFileSpy = sinonSandbox.stub(fs, 'writeFile').returns(null);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			await itemCacheService.CacheItems([]);
-			writeFileSpy.calls.mostRecent().args[3]();
+			writeFileSpy.getCalls()[writeFileSpy.callCount - 1].args[3]();
 
 			// Assert
 			logMock.verify((x) => x.info(It.isAnyString()), Times.once());
@@ -36,12 +47,12 @@ describe('ItemCacheService', () => {
 		it('should call Bunyan.error() when unsuccessful', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			const writeFileSpy = spyOn(fs, 'writeFile').and.returnValue(null);
+			const writeFileSpy = sinonSandbox.stub(fs, 'writeFile').returns(null);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			await itemCacheService.CacheItems([]);
-			writeFileSpy.calls.mostRecent().args[3]({ err: 'Some error' });
+			writeFileSpy.getCalls()[writeFileSpy.callCount - 1].args[3]({ err: 'Some error' });
 
 			// Assert
 			logMock.verify((x) => x.error(It.isAny(), It.isAnyString()), Times.once());
@@ -51,8 +62,8 @@ describe('ItemCacheService', () => {
 	describe('GetItemsCache', () => {
 		let readFileSpy: any;
 		beforeEach(() => {
-			readFileSpy = spyOn(fs, 'readFile')
-				.and.callFake((...args: any[]) => {
+			readFileSpy = sinonSandbox.stub(fs, 'readFile')
+				.callsFake((...args: any[]) => {
 					const [, , callback] = args;
 					callback(null, JSON.stringify([
 						new Item('Soma Prime Barrel', 'soma_prime_barrel', 45, 3),
@@ -70,37 +81,35 @@ describe('ItemCacheService', () => {
 		it('should return an array of type Item', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(true);
+			sinonSandbox.stub(fs, 'existsSync').returns(true);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			const val = await itemCacheService.GetItemsCache();
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBeGreaterThan(0);
+			expect(val).to.be.an('array').with.length.greaterThan(0);
 			val.forEach((item) => expect(item instanceof Item));
 		});
 
 		it('should return an empty array if cache doens\'t exist', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(false);
+			sinonSandbox.stub(fs, 'existsSync').returns(false);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			const val = await itemCacheService.GetItemsCache();
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBe(0);
+			expect(val).to.be.an('array').and.have.length(0);
 		});
 
 		it('should call Bunyan.error() if it failed to read the item cache', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(true);
-			readFileSpy.and.callFake((...args: any[]) => {
+			sinonSandbox.stub(fs, 'existsSync').returns(true);
+			readFileSpy.callsFake((...args: any[]) => {
 				const [, , callback] = args;
 				callback({ err: true }, null);
 			});
@@ -116,7 +125,7 @@ describe('ItemCacheService', () => {
 		it('should call Bunyan.info() if cache was loaded successfully', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(true);
+			sinonSandbox.stub(fs, 'existsSync').returns(true);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
@@ -129,8 +138,8 @@ describe('ItemCacheService', () => {
 		it('should throw an exception if it failed to read the item cache', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(true);
-			readFileSpy.and.callFake((...args: any[]) => {
+			sinonSandbox.stub(fs, 'existsSync').returns(true);
+			readFileSpy.callsFake((...args: any[]) => {
 				const [, , callback] = args;
 				callback({ err: true }, null);
 			});
@@ -141,7 +150,7 @@ describe('ItemCacheService', () => {
 			await itemCacheService.GetItemsCache().catch(() => errorThrown = true);
 
 			// Assert
-			expect(errorThrown).toBeTruthy();
+			expect(errorThrown).to.be.true;
 		});
 	});
 
@@ -149,27 +158,27 @@ describe('ItemCacheService', () => {
 		it('should return true if file exists', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(true);
+			sinonSandbox.stub(fs, 'existsSync').returns(true);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			const hasCache = itemCacheService.HasCache();
 
 			// Assert
-			expect(hasCache).toBeTruthy();
+			expect(hasCache).to.be.true;
 		});
 
 		it('should return false if file doesn\'t exist', async () => {
 			// Arrange
 			const logMock = Mock.ofType<Bunyan>();
-			spyOn(fs, 'existsSync').and.returnValue(false);
+			sinonSandbox.stub(fs, 'existsSync').returns(false);
 			const itemCacheService = new ItemCacheService(logMock.object);
 
 			// Act
 			const hasCache = itemCacheService.HasCache();
 
 			// Assert
-			expect(hasCache).toBeFalsy();
+			expect(hasCache).to.be.false;
 		});
 	});
 });

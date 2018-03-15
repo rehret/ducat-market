@@ -1,4 +1,5 @@
 import { IMock, Mock, It, Times } from 'typemoq';
+import { expect } from 'chai';
 import { AxiosStatic, AxiosInstance, AxiosResponse } from 'axios';
 import { WarframeMarketService } from '../../src/server/services/warframe-market.service';
 import { Config, ConfigKeys } from '../../src/server/config/config';
@@ -68,13 +69,11 @@ describe('WarframeMarketService', () => {
 			const val = await warframeMarketService.GetItemManifest();
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBeGreaterThan(0);
+			expect(val).to.be.an('array').and.have.length.greaterThan(0);
 			val.forEach((itemManifest) => {
-				const itemManifestProperties = Object.getOwnPropertyNames(itemManifest);
-				expect(itemManifestProperties.includes('id'));
-				expect(itemManifestProperties.includes('item_name'));
-				expect(itemManifestProperties.includes('url_name'));
+				expect(itemManifest).to.have.property('id').that.is.a('string');
+				expect(itemManifest).to.have.property('item_name').that.is.a('string');
+				expect(itemManifest).to.have.property('url_name').that.is.a('string');
 			});
 		});
 
@@ -123,15 +122,13 @@ describe('WarframeMarketService', () => {
 			const val = await warframeMarketService.GetItemsInSet('soma_prime_set');
 
 			// Assert
-			expect(Array.isArray(val));
-			expect(val.length).toBeGreaterThan(0);
+			expect(val).to.be.an('array').with.length.greaterThan(0);
 			val.forEach((itemInSet) => {
-				const itemInSetProperties = Object.getOwnPropertyNames(itemInSet);
-				expect(itemInSetProperties.includes('en'));
-				expect(Object.getOwnPropertyNames(itemInSet.en).includes('item_name'));
-				expect(itemInSetProperties.includes('url_name'));
-				expect(itemInSetProperties.includes('ducats'));
-				expect(itemInSetProperties.includes('set_root'));
+				expect(itemInSet).to.have.property('en').that.is.an('object');
+				expect(itemInSet.en).to.have.property('item_name').that.is.a('string');
+				expect(itemInSet).to.have.property('url_name').that.is.a('string');
+				expect(itemInSet).to.have.property('ducats').that.is.a('number');
+				expect(itemInSet).to.have.property('set_root').that.is.a('boolean');
 			});
 		});
 
@@ -183,18 +180,17 @@ describe('WarframeMarketService', () => {
 
 			// Assert
 			expect(!Array.isArray(val));
-			const itemStatProperties = Object.getOwnPropertyNames(val);
-			expect(itemStatProperties.includes('min_price'));
-			expect(itemStatProperties.includes('open_price'));
-			expect(itemStatProperties.includes('avg_price'));
-			expect(itemStatProperties.includes('id'));
-			expect(itemStatProperties.includes('median'));
-			expect(itemStatProperties.includes('max_price'));
-			expect(itemStatProperties.includes('datetime'));
-			expect(itemStatProperties.includes('volume'));
-			expect(itemStatProperties.includes('closed_price'));
-			expect(itemStatProperties.includes('donch_top'));
-			expect(itemStatProperties.includes('donch_bot'));
+			expect(val).to.have.property('min_price').that.is.a('number');
+			expect(val).to.have.property('open_price').that.is.a('number');
+			expect(val).to.have.property('avg_price').that.is.a('number');
+			expect(val).to.have.property('id').that.is.a('string');
+			expect(val).to.have.property('median').that.is.a('number');
+			expect(val).to.have.property('max_price').that.is.a('number');
+			expect(val).to.have.property('datetime').that.is.a('string');
+			expect(val).to.have.property('volume').that.is.a('number');
+			expect(val).to.have.property('closed_price').that.is.a('number');
+			expect(val).to.have.property('donch_top').that.is.a('number');
+			expect(val).to.have.property('donch_bot').that.is.a('number');
 		});
 
 		it('should call AxiosInstance.get() once', async () => {
