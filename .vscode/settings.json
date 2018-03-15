@@ -1,0 +1,7 @@
+{
+	"mocha.files.glob": "spec/**/*.ts",
+	"mocha.requires": [
+		"ts-node/register",
+		"reflect-metadata"
+	]
+}

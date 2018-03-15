@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { Item } from '../../src/shared/models/item';
 
 describe('Item', () => {
@@ -8,12 +9,12 @@ describe('Item', () => {
 
 			// Assert
 			const itemProperties = Object.getOwnPropertyNames(item);
-			expect(itemProperties.length).toBe(5);
-			expect(itemProperties.includes('Name'));
-			expect(itemProperties.includes('UrlName'));
-			expect(itemProperties.includes('Price'));
-			expect(itemProperties.includes('Ducats'));
-			expect(itemProperties.includes('IconPath'));
+			expect(itemProperties).to.have.length(5);
+			expect(item).to.have.property('Name').that.is.a('string');
+			expect(item).to.have.property('UrlName').that.is.a('string');
+			expect(item).to.have.property('Price').that.is.a('number');
+			expect(item).to.have.property('Ducats').that.is.a('number');
+			expect(item).to.have.property('IconPath').that.is.a('string');
 		});
 	});
 
@@ -28,7 +29,7 @@ describe('Item', () => {
 			const ducatPlatRatio = item.DucatPlatRatio;
 
 			// Assert
-			expect(ducatPlatRatio).toBe(ducats / price);
+			expect(ducatPlatRatio).to.equal(ducats / price);
 		});
 	});
 });
