@@ -9,3 +9,7 @@ item-cache.json
 
 # build
 dist/
+
+# nyc
+.nyc_output/
+coverage/

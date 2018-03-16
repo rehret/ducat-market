@@ -3,5 +3,9 @@
 	"mocha.requires": [
 		"ts-node/register",
 		"reflect-metadata"
-	]
+	],
+	"files.exclude": {
+		".nyc_output/": true,
+		"coverage/": true
+	}
 }
