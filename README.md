@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/rehret/ducat-market.svg?branch=master)](https://travis-ci.org/rehret/ducat-market)
+[![Coverage Status](https://coveralls.io/repos/github/rehret/ducat-market/badge.svg?branch=master)](https://coveralls.io/github/rehret/ducat-market?branch=master)
 
 # Ducat Market
 Find the best value items for turning platinum into ducats in Warframe.
