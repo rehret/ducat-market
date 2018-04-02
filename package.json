@@ -68,7 +68,7 @@
 		"npm-build-tools": "^2.2.5",
 		"nyc": "^11.6.0",
 		"sass-loader": "^6.0.7",
-		"sinon": "^4.4.9",
+		"sinon": "^4.5.0",
 		"style-loader": "^0.20.3",
 		"ts-node": "^5.0.1",
 		"tslint": "^5.9.1",
