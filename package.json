@@ -70,7 +70,7 @@
 		"sass-loader": "^7.0.1",
 		"sinon": "^5.0.5",
 		"style-loader": "^0.21.0",
-		"ts-node": "^6.0.2",
+		"ts-node": "^6.0.3",
 		"tslint": "^5.10.0",
 		"typemoq": "^2.1.0",
 		"typescript": "^2.8.3",
