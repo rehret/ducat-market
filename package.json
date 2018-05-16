@@ -51,7 +51,7 @@
 		"@types/nconf": "^0.0.37",
 		"@types/node": "^10.0.6",
 		"@types/shortid": "^0.0.29",
-		"@types/sinon": "^4.3.1",
+		"@types/sinon": "^4.3.3",
 		"angular": "^1.6.10",
 		"awesome-typescript-loader": "^4.0.1",
 		"chai": "^4.1.2",
