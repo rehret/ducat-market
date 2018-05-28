@@ -75,6 +75,6 @@
 		"typemoq": "^2.1.0",
 		"typescript": "^2.8.3",
 		"uglifyjs-webpack-plugin": "^1.2.5",
-		"webpack": "^3.11.0"
+		"webpack": "^3.12.0"
 	}
 }
