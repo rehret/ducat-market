@@ -94,9 +94,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/angular@^1.6.45":
-  version "1.6.45"
-  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.45.tgz#5b0b91a51d717f6fc816d59e1234d5292f33f7b9"
+"@types/angular@^1.6.46":
+  version "1.6.46"
+  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.46.tgz#bebd357e91021636ad2a8aea85a3592db505656e"
 
 "@types/body-parser@*":
   version "1.16.8"
