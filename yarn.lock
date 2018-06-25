@@ -164,6 +164,12 @@
   dependencies:
     "@types/koa" "*"
 
+"@types/koa-bodyparser@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-5.0.0.tgz#cf90d28df904d5fb89dcbb953d13790eeca91561"
+  dependencies:
+    "@types/koa" "*"
+
 "@types/koa-compose@*":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@types/koa-compose/-/koa-compose-3.2.2.tgz#dc106e000bbf92a3ac900f756df47344887ee847"
