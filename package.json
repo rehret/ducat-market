@@ -13,7 +13,7 @@
 		"test": "yarn test:no-build",
 		"test:no-build": "mocha -r reflect-metadata dist/spec/**/*.js",
 		"test:watch": "mocha -r ts-node/register -r reflect-metadata --watch --watch-extensions ts spec/**/*.ts",
-		"test:coverage": "cross-env TS_NODE_PROJECT=spec/tsconfig.json nyc mocha -r ts-node/register -r reflect-metadata spec/**/*.spec.ts",
+		"test:coverage": "cross-env TS_NODE_FILES=true TS_NODE_PROJECT=spec/tsconfig.json nyc mocha -r ts-node/register -r reflect-metadata spec/**/*.spec.ts",
 		"start": "node dist/server/index.js | bunyan",
 		"prebuild": "yarn lint",
 		"build": "yarn build:tests && yarn build:server && yarn build:client",
