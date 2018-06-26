@@ -1,6 +1,6 @@
 import { Mock, It, Times } from 'typemoq';
 import { expect } from 'chai';
-import { sandbox, SinonSandbox } from 'sinon';
+import { createSandbox, SinonSandbox } from 'sinon';
 import * as fs from 'fs';
 import * as Bunyan from 'bunyan';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
@@ -9,7 +9,7 @@ import { Item } from '../../src/shared/models/item';
 describe('ItemCacheService', () => {
 	let sinonSandbox: SinonSandbox;
 	beforeEach(() => {
-		sinonSandbox = sandbox.create();
+		sinonSandbox = createSandbox();
 	});
 
 	afterEach(() => {

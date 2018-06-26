@@ -1,6 +1,6 @@
 import { IMock, Mock, It, Times } from 'typemoq';
 import { expect } from 'chai';
-import { sandbox, SinonSandbox } from 'sinon';
+import { createSandbox, SinonSandbox } from 'sinon';
 import * as Bunyan from 'bunyan';
 import { ItemProvider } from '../../src/server/services/item.provider';
 import { ItemCacheService } from '../../src/server/services/item-cache.service';
@@ -15,7 +15,7 @@ describe('ItemProvider', () => {
 	let sinonSandbox: SinonSandbox;
 
 	beforeEach(() => {
-		sinonSandbox = sandbox.create();
+		sinonSandbox = createSandbox();
 
 		itemCacheServiceMock = Mock.ofType<ItemCacheService>();
 		itemServiceMock = Mock.ofType<ItemService>();
