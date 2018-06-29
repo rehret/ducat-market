@@ -217,9 +217,9 @@
   version "0.0.37"
   resolved "https://registry.yarnpkg.com/@types/nconf/-/nconf-0.0.37.tgz#a43702a1c57e46139bf084f5b20c23cd7c88a5d1"
 
-"@types/node@*", "@types/node@^10.3.6":
-  version "10.3.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+"@types/node@*", "@types/node@^10.5.1":
+  version "10.5.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.1.tgz#d578446f4abff5c0b49ade9b4e5274f6badaadfc"
 
 "@types/serve-static@*":
   version "1.13.1"
