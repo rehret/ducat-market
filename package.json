@@ -36,7 +36,7 @@
 		"nconf": "^0.10.0",
 		"reflect-metadata": "^0.1.12",
 		"routing-controllers": "^0.7.7",
-		"shortid": "^2.2.8",
+		"shortid": "^2.2.11",
 		"swagger2-koa": "^1.0.1"
 	},
 	"devDependencies": {
