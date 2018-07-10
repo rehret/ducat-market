@@ -168,9 +168,9 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa-bodyparser@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-5.0.0.tgz#cf90d28df904d5fb89dcbb953d13790eeca91561"
+"@types/koa-bodyparser@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-5.0.1.tgz#c40c0a0b7903df128a4e0677c51b5bdcc8bfa025"
   dependencies:
     "@types/koa" "*"
 
