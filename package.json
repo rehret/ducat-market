@@ -37,7 +37,7 @@
 		"reflect-metadata": "^0.1.12",
 		"routing-controllers": "^0.7.7",
 		"shortid": "^2.2.12",
-		"swagger2-koa": "^1.0.1"
+		"swagger2-koa": "^1.0.2"
 	},
 	"devDependencies": {
 		"@types/angular": "^1.6.49",
