@@ -162,12 +162,6 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/keygrip/-/keygrip-1.0.1.tgz#ff540462d2fb4d0a88441ceaf27d287b01c3d878"
 
-"@types/koa-bodyparser@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-4.2.0.tgz#04febc567f3d3dd40e3d1a0e095cdf7b07c4d7ce"
-  dependencies:
-    "@types/koa" "*"
-
 "@types/koa-bodyparser@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-5.0.1.tgz#c40c0a0b7903df128a4e0677c51b5bdcc8bfa025"
@@ -1297,7 +1291,7 @@ debug@3.1.0, debug@^3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^2.2.0, debug@^2.3.3, debug@^2.6.3:
+debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
@@ -2271,7 +2265,7 @@ http-errors@1.6.3, http-errors@^1.6.3:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-http-errors@^1.3.1, http-errors@^1.6.1, http-errors@~1.6.1, http-errors@~1.6.2:
+http-errors@^1.3.1, http-errors@~1.6.1, http-errors@~1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.2.tgz#0a002cc85707192a7e7946ceedc11155f60ec736"
   dependencies:
@@ -2844,15 +2838,6 @@ koa-router@^7.4.0:
     path-to-regexp "^1.1.1"
     urijs "^1.19.0"
 
-koa-send@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/koa-send/-/koa-send-4.1.3.tgz#0822207bbf5253a414c8f1765ebc29fa41353cb6"
-  dependencies:
-    debug "^2.6.3"
-    http-errors "^1.6.1"
-    mz "^2.6.0"
-    resolve-path "^1.4.0"
-
 koa-send@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/koa-send/-/koa-send-5.0.0.tgz#5e8441e07ef55737734d7ced25b842e50646e7eb"
@@ -2869,7 +2854,7 @@ koa-static@^5.0.0:
     debug "^3.1.0"
     koa-send "^5.0.0"
 
-koa@^2.5.1, koa@^2.5.2:
+koa@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.5.2.tgz#f2bda7f3e70be54924e7e5e9789a249f77256fe3"
   dependencies:
@@ -3352,7 +3337,7 @@ mv@~2:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-mz@^2.6.0, mz@^2.7.0:
+mz@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   dependencies:
@@ -4875,23 +4860,23 @@ supports-color@^5.2.0:
   dependencies:
     has-flag "^3.0.0"
 
-swagger-ui-dist@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.15.0.tgz#2b4aa3ff2c63de194bf1892886d409e812807f5a"
+swagger-ui-dist@^3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.18.0.tgz#d6f2ee0cd9da7be44729843f423cc70802cf83ce"
 
-swagger2-koa@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/swagger2-koa/-/swagger2-koa-1.0.1.tgz#e93b76e201b4444cf45e92b560289b967660ddd8"
+swagger2-koa@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/swagger2-koa/-/swagger2-koa-1.0.2.tgz#afc75fa3dd5285455156491488268dc0ec084989"
   dependencies:
-    "@types/koa-bodyparser" "^4.2.0"
+    "@types/koa-bodyparser" "^5.0.1"
     debug "^3.1.0"
-    koa "^2.5.1"
+    koa "^2.5.2"
     koa-bodyparser "^4.2.1"
     koa-convert "^1.2.0"
     koa-cors "0.0.16"
     koa-router "^7.4.0"
-    koa-send "^4.1.3"
-    swagger-ui-dist "^3.15.0"
+    koa-send "^5.0.0"
+    swagger-ui-dist "^3.18.0"
     swagger2 "^1.0.1"
 
 swagger2@^1.0.1:
