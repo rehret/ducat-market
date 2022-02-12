@@ -25,7 +25,7 @@
 		"clean": "n-clean dist"
 	},
 	"dependencies": {
-		"ajv": "^5.0.0",
+		"ajv": "^6.12.3",
 		"axios": "^0.18.0",
 		"bunyan": "^1.8.12",
 		"inversify": "^4.13.0",
